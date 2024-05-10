@@ -25,7 +25,7 @@ namespace Testing2
         public void OrderDatePropertyOK()
         {
             clsOrder AnOrder = new clsOrder();
-            DateTime testData = DateTime.Now.Date();
+            DateTime testData = DateTime.Now.Date;
             AnOrder.DateAdded = testData;
             Assert.AreEqual(AnOrder.DateAdded, testData);
         }

@@ -50,7 +50,7 @@ namespace Testing1
             //create an instance of the class we want to create
             clsStock AnStock = new clsStock();
             //create some test data to assign to the property
-            String TestData = "1";
+            Int32 TestData = 1;
             //assign the data to the property
             AnStock.SupplierId = TestData;
             //test to see that the two values are the same
@@ -94,6 +94,121 @@ namespace Testing1
             AnStock.StaffId = TestData;
             //test to see that the two values are the same
             Assert.AreEqual(AnStock.StaffId, TestData);
+        }
+
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            clsStock AnStock = new clsStock();
+            Boolean Found = false;
+            string StockID = "AP21";
+            Found = AnStock.Find(StockID);
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestStockIdFound()
+        {
+            clsStock AnStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            string StockID = "AP21";
+            Found = AnStock.Find(StockID);
+            if (AnStock.StockId != "AP21")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestInStockFound()
+        {
+            clsStock AnStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            string StockID = "AP21";
+            Found = AnStock.Find(StockID);
+            if (AnStock.InStock != true)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestLastOrderFound()
+        {
+            clsStock AnStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            string StockID = "AP21";
+            Found = AnStock.Find(StockID);
+            if (AnStock.LastOrder != Convert.ToDateTime("10/05/2024"))
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestSupplierIdFound()
+        {
+            clsStock AnStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            string StockID = "AP21";
+            Found = AnStock.Find(StockID);
+            if (AnStock.SupplierId != 21)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestProductIdFound()
+        {
+            clsStock AnStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            string StockID = "AP21";
+            Found = AnStock.Find(StockID);
+            if (AnStock.ProductId != 21)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestOrderIdFound()
+        {
+            clsStock AnStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            string StockID = "AP21";
+            Found = AnStock.Find(StockID);
+            if (AnStock.OrderId != "21")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestStaffIdFound()
+        {
+            clsStock AnStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            string StockID = "AP21";
+            Found = AnStock.Find(StockID);
+            if (AnStock.StaffId != 21)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
         }
 
     }

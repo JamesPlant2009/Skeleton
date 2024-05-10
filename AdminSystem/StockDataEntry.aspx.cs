@@ -22,7 +22,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         clsStock AnStock = new clsStock();
         AnStock.StockId = txtStockID.Text;
-        AnStock.SupplierId = txtSupplierID.Text;    
+        AnStock.SupplierId = Convert.ToInt32(txtSupplierID.Text);    
         AnStock.ProductId = Convert.ToInt32(txtProductID.Text);
         AnStock.OrderId = txtOrderID.Text;
         AnStock.StaffId = Convert.ToInt32(txtStaffID.Text);
