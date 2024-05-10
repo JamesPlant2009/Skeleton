@@ -9,6 +9,7 @@ namespace ClassLibrary
         public string StockId { get; set; }
         public Int32 CustomerId { get; set; }
         public Int32 OrderId { get; set; }
+        public int Price { get; set; }
     }
    
 }
