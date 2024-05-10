@@ -101,7 +101,7 @@ namespace Testing1
         {
             clsStock AnStock = new clsStock();
             Boolean Found = false;
-            string StockID = "AP21";
+            string StockID = "AP1A240405002";
             Found = AnStock.Find(StockID);
             Assert.IsTrue(Found);
         }
@@ -112,9 +112,9 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            string StockID = "AP21";
+            string StockID = "AP1A240405002";
             Found = AnStock.Find(StockID);
-            if (AnStock.StockId != "AP21")
+            if (AnStock.StockId != "AP1A240405002")
             {
                 OK = false;
             }
@@ -127,7 +127,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            string StockID = "AP21";
+            string StockID = "AP1A240405002";
             Found = AnStock.Find(StockID);
             if (AnStock.InStock != true)
             {
@@ -142,7 +142,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            string StockID = "AP21";
+            string StockID = "AP1A240405002";
             Found = AnStock.Find(StockID);
             if (AnStock.LastOrder != Convert.ToDateTime("10/05/2024"))
             {
@@ -157,7 +157,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            string StockID = "AP21";
+            string StockID = "AP1A240405002";
             Found = AnStock.Find(StockID);
             if (AnStock.SupplierId != 21)
             {
@@ -172,7 +172,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            string StockID = "AP21";
+            string StockID = "AP1A240405002";
             Found = AnStock.Find(StockID);
             if (AnStock.ProductId != 21)
             {
@@ -187,7 +187,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            string StockID = "AP21";
+            string StockID = "AP1A240405002";
             Found = AnStock.Find(StockID);
             if (AnStock.OrderId != "21")
             {
@@ -202,7 +202,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            string StockID = "AP21";
+            string StockID = "AP1A240405002";
             Found = AnStock.Find(StockID);
             if (AnStock.StaffId != 21)
             {

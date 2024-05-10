@@ -109,17 +109,27 @@ namespace ClassLibrary
             }
         }
 
-        public bool Find(string stockID)
+        public bool Find(string StockID)
         {
-            mInStock = true;
-            mLastOrder = Convert.ToDateTime("10/05/2024");
-            mStockId = "AP21";
-            mSupplierId = 21;
-            mProductId = 21;
-            mOrderId = "21";
-            mStaffId = 21;
+         clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@StockID", StockID); //should be StockID?
+            DB.Execute("dbo.sproc_tblStock_FilteringByStockID");
+            if (DB.Count == 1)
+            {
+                mStockId = Convert.ToString(DB.DataTable.Rows[0]["StockID"]);
+                mInStock = Convert.ToBoolean(DB.DataTable.Rows[0]["InStock"]);
+                mLastOrder = Convert.ToDateTime(DB.DataTable.Rows[0]["LastOrder"]);
+                mSupplierId = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierID"]);
+                mProductId = Convert.ToInt32(DB.DataTable.Rows[0]["ProductID"]);
+                mOrderId = Convert.ToString(DB.DataTable.Rows[0]["OrderID"]);
+                mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffID"]);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 
-            return true;
         }
     }
 }

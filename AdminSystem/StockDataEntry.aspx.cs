@@ -12,7 +12,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
 
     }
-
+    
     protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
     {
 
@@ -35,5 +35,24 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void txtStockID_TextChanged(object sender, EventArgs e)
     {
 
+    }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        clsStock AnStock = new clsStock();
+        String StockID;
+        Boolean Found = false;
+        StockID = Convert.ToString(txtStockID.Text);
+        Found = AnStock.Find(StockID);
+        if (Found == true) 
+        {
+            txtLastOrder.Text = AnStock.LastOrder.ToString();
+            txtOrderID.Text = AnStock.OrderId;
+            txtProductID.Text = AnStock.ProductId.ToString();
+            txtStaffID.Text = AnStock.StaffId.ToString();
+            txtSupplierID.Text = AnStock.SupplierId.ToString();
+            ChkStock.Checked = AnStock.InStock;
+
+        }
     }
 }
