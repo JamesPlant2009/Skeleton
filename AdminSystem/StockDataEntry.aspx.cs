@@ -27,7 +27,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         AnStock.OrderId = txtOrderID.Text;
         AnStock.StaffId = Convert.ToInt32(txtStaffID.Text);
         AnStock.LastOrder = Convert.ToDateTime(txtLastOrder.Text);
-        AnStock.InStock = ChkStock.Checked;
+        AnStock.InStock = chk.Checked;
         Session["AnStock"] = AnStock;
         Response.Redirect("StockViewer.aspx");
     }
@@ -51,7 +51,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtProductID.Text = AnStock.ProductId.ToString();
             txtStaffID.Text = AnStock.StaffId.ToString();
             txtSupplierID.Text = AnStock.SupplierId.ToString();
-            ChkStock.Checked = AnStock.InStock;
+            chk.Checked = AnStock.InStock;
 
         }
     }
