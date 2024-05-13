@@ -4,9 +4,19 @@ using System;
 
 namespace Testing1
 {
+
+
     [TestClass]
     public class tstStock
     {
+
+        //good test data
+        string SupplierId = "15";
+        string StaffId = "30";
+        string ProductId = "500";
+        string OrderId = "675";
+        string LastOrder = DateTime.Now.ToShortDateString();
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -76,7 +86,7 @@ namespace Testing1
             //create an instance of the class we want to create
             clsStock AnStock = new clsStock();
             //create some test data to assign to the property
-            String TestData = "1";
+            Int32 TestData = 1;
             //assign the data to the property
             AnStock.OrderId = TestData;
             //test to see that the two values are the same
@@ -189,7 +199,7 @@ namespace Testing1
             Boolean OK = true;
             string StockID = "AP1A240405002";
             Found = AnStock.Find(StockID);
-            if (AnStock.OrderId != "21")
+            if (AnStock.OrderId != 21)
             {
                 OK = false;
             }
@@ -210,6 +220,118 @@ namespace Testing1
             }
             Assert.IsTrue(OK);
         }
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+           clsStock AnStock = new clsStock();
+            string Error = "";
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void OrderIdExtMin()
+        {
+            clsStock AnStock = new clsStock();
+            string Error = "";
+            string OrderId = "-100,000,000,000";
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void OrderIdMinLessOne()
+        {
+            clsStock AnStock = new clsStock();
+            string Error = "";
+            string OrderId = "0";
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void OrderIdMin()
+        {
+            clsStock AnStock = new clsStock();
+            string Error = "";
+            string OrderId = "1";
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Assert.AreEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void OrderIdExtMinPlusOne()
+        {
+            clsStock AnStock = new clsStock();
+            string Error = "";
+            string OrderId = "2";
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void OrderIdMaxLessOne()
+        {
+            clsStock AnStock = new clsStock();
+            string Error = "";
+            string OrderId = "2,147,483,646";
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void OrderIdMax()
+        {
+            clsStock AnStock = new clsStock();
+            string Error = "";
+            string OrderId = "2,147,483,647";
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void OrderIdMaxPlusOne()
+        {
+            clsStock AnStock = new clsStock();
+            string Error = "";
+            string OrderId = "2,147,483,648";
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void OrderIdMid()
+        {
+            clsStock AnStock = new clsStock();
+            string Error = "";
+            string OrderId = "1,073,741,824";
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void OrderIdExtMax()
+        {
+            clsStock AnStock = new clsStock();
+            string Error = "";
+            string OrderId = "100,000,000,000";
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void OrderIdExtInvalidDataType()
+        {
+            clsStock AnStock = new clsStock();
+            string Error = "";
+            string OrderId = "Fred";
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+
+
 
     }
 }

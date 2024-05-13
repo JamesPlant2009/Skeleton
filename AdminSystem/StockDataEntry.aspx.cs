@@ -24,7 +24,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         AnStock.StockId = txtStockID.Text;
         AnStock.SupplierId = Convert.ToInt32(txtSupplierID.Text);    
         AnStock.ProductId = Convert.ToInt32(txtProductID.Text);
-        AnStock.OrderId = txtOrderID.Text;
+        AnStock.OrderId = Convert.ToInt32(txtOrderID.Text);
         AnStock.StaffId = Convert.ToInt32(txtStaffID.Text);
         AnStock.LastOrder = Convert.ToDateTime(txtLastOrder.Text);
         AnStock.InStock = ChkStock.Checked;
@@ -47,7 +47,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Found == true) 
         {
             txtLastOrder.Text = AnStock.LastOrder.ToString();
-            txtOrderID.Text = AnStock.OrderId;
+            txtOrderID.Text = AnStock.OrderId.ToString();
             txtProductID.Text = AnStock.ProductId.ToString();
             txtStaffID.Text = AnStock.StaffId.ToString();
             txtSupplierID.Text = AnStock.SupplierId.ToString();
