@@ -111,7 +111,7 @@ namespace ClassLibrary
 
         public bool Find(string StockID)
         {
-         clsDataConnection DB = new clsDataConnection();
+            clsDataConnection DB = new clsDataConnection();
             DB.AddParameter("@StockID", StockID); //should be StockID?
             DB.Execute("dbo.sproc_tblStock_FilteringByStockID");
             if (DB.Count == 1)
@@ -132,20 +132,32 @@ namespace ClassLibrary
 
         }
 
-        public string Valid(string supplierId, string productId, string orderId, string staffId, string lastOrder)
+        public string Valid(string SupplierId, string ProductId, string OrderId, string StaffId, string LastOrder)
         {
             string Error = "";
-            
-            Int64 result = Convert.ToInt64(orderId);
-            if (OrderId <= 0)
+            Int64 max = 2147483647;
+            Int64 min = 0;
+
+            try
             {
-                Error = Error + "The  OrderId must be greater than 0 : ";
-            }
-            if (OrderId > 2147483647)
+                Int64 result = Convert.ToInt64(OrderId);
+                if (result <= min)
                 {
-                Error = Error + "The  OrderId must be smaller than 2,147,483,647 : ";
+                    Error = Error + "The  OrderId must be greater than 0 : ";
+                }
+                if (result > max)
+                {
+                    Error = Error + "The  OrderId must be smaller than 2,147,483,647 : ";
+                }
+
+                return Error;
             }
-            return Error;
+            catch
+            {
+                Error = Error + "The OrderId must be an int";
+                return Error;
+            }
+
         }
     }
 }

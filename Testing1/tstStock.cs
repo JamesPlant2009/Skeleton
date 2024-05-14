@@ -227,7 +227,7 @@ namespace Testing1
            clsStock AnStock = new clsStock();
             string Error = "";
             Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
@@ -235,7 +235,7 @@ namespace Testing1
         {
             clsStock AnStock = new clsStock();
             string Error = "";
-            string OrderId = "-100,000,000,000";
+            string OrderId = "-100000000000";
             Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
             Assert.AreNotEqual(Error, "");
         }
@@ -276,7 +276,7 @@ namespace Testing1
         {
             clsStock AnStock = new clsStock();
             string Error = "";
-            string OrderId = "2,147,483,646";
+            string OrderId = "2147483646";
             Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
             Assert.AreEqual(Error, "");
         }
@@ -286,7 +286,7 @@ namespace Testing1
         {
             clsStock AnStock = new clsStock();
             string Error = "";
-            string OrderId = "2,147,483,647";
+            string OrderId = "2147483647";
             Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
             Assert.AreEqual(Error, "");
         }
@@ -296,7 +296,7 @@ namespace Testing1
         {
             clsStock AnStock = new clsStock();
             string Error = "";
-            string OrderId = "2,147,483,648";
+            string OrderId = "2147483648";
             Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
             Assert.AreNotEqual(Error, "");
         }
@@ -305,7 +305,7 @@ namespace Testing1
         {
             clsStock AnStock = new clsStock();
             string Error = "";
-            string OrderId = "1,073,741,824";
+            string OrderId = "1073741824";
             Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
             Assert.AreEqual(Error, "");
         }
@@ -314,7 +314,7 @@ namespace Testing1
         {
             clsStock AnStock = new clsStock();
             string Error = "";
-            string OrderId = "100,000,000,000";
+            string OrderId = "100000000000";
             Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
             Assert.AreNotEqual(Error, "");
         }
