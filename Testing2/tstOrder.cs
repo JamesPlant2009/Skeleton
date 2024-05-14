@@ -26,8 +26,8 @@ namespace Testing2
         {
             clsOrder AnOrder = new clsOrder();
             DateTime testData = DateTime.Now.Date;
-            AnOrder.DateAdded = testData;
-            Assert.AreEqual(AnOrder.DateAdded, testData);
+            AnOrder.DateOrdered = testData;
+            Assert.AreEqual(AnOrder.DateOrdered, testData);
         }
         [TestMethod]
         public void OrderIdPropertyOK()
@@ -60,6 +60,52 @@ namespace Testing2
             Int32 testData = 1;
             AnOrder.CustomerId = testData;
             Assert.AreEqual(AnOrder.CustomerId, testData);
+        }
+        [TestMethod]
+        public void FindMethodOK() 
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Int32 OrderId = 1;
+            Found = AnOrder.Find(OrderId);
+        }
+        [TestMethod]
+        public void TestOrderIdFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderId = 1;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.OrderId != 1) 
+            {
+            OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestCustomerIdFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderId = 1;
+            Int32 CustomerId = 1;
+            Found = AnOrder.Find(OrderId);
+        }
+        [TestMethod]
+        public void TestDateOrdered()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderId = 1;
+            Found= AnOrder.Find(OrderId);
+            if(AnOrder.DateOrdered != Convert.ToDateTime("14/05/2025"))
+            {
+            OK = false;
+            }
+            Assert.IsTrue(OK);
         }
     }
 }
