@@ -10,7 +10,7 @@ namespace ClassLibrary
         private DateTime mLastOrder;
         private int mSupplierId;
         private int mProductId;
-        private string mOrderId;
+        private int mOrderId;
         private int mStaffId;
 
         public bool InStock
@@ -84,7 +84,7 @@ namespace ClassLibrary
         }
 
 
-        public string OrderId
+        public int OrderId
         {
             get
             {
@@ -111,7 +111,7 @@ namespace ClassLibrary
 
         public bool Find(string StockID)
         {
-         clsDataConnection DB = new clsDataConnection();
+            clsDataConnection DB = new clsDataConnection();
             DB.AddParameter("@StockID", StockID); //should be StockID?
             DB.Execute("dbo.sproc_tblStock_FilteringByStockID");
             if (DB.Count == 1)
@@ -121,13 +121,41 @@ namespace ClassLibrary
                 mLastOrder = Convert.ToDateTime(DB.DataTable.Rows[0]["LastOrder"]);
                 mSupplierId = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierID"]);
                 mProductId = Convert.ToInt32(DB.DataTable.Rows[0]["ProductID"]);
-                mOrderId = Convert.ToString(DB.DataTable.Rows[0]["OrderID"]);
+                mOrderId = Convert.ToInt32(DB.DataTable.Rows[0]["OrderID"]);
                 mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffID"]);
                 return true;
             }
             else
             {
                 return false;
+            }
+
+        }
+
+        public string Valid(string SupplierId, string ProductId, string OrderId, string StaffId, string LastOrder)
+        {
+            string Error = "";
+            Int64 max = 2147483647;
+            Int64 min = 0;
+
+            try
+            {
+                Int64 result = Convert.ToInt64(OrderId);
+                if (result <= min)
+                {
+                    Error = Error + "The  OrderId must be greater than 0 : ";
+                }
+                if (result > max)
+                {
+                    Error = Error + "The  OrderId must be smaller than 2,147,483,647 : ";
+                }
+
+                return Error;
+            }
+            catch
+            {
+                Error = Error + "The OrderId must be an int";
+                return Error;
             }
 
         }
