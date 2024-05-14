@@ -134,9 +134,11 @@ namespace ClassLibrary
 
         public string Valid(string SupplierId, string ProductId, string OrderId, string StaffId, string LastOrder)
         {
+            DateTime DateTemp;
             string Error = "";
             Int64 max = 2147483647;
             Int64 min = 0;
+            DateTemp = Convert.ToDateTime(LastOrder);
 
             try
             {
@@ -149,14 +151,28 @@ namespace ClassLibrary
                 {
                     Error = Error + "The  OrderId must be smaller than 2,147,483,647 : ";
                 }
+                
+                
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the past";
+                }
+
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the future";
+                }
 
                 return Error;
             }
+            
             catch
             {
                 Error = Error + "The OrderId must be an int";
                 return Error;
             }
+
+
 
         }
     }
