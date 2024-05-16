@@ -138,7 +138,7 @@ namespace ClassLibrary
             string Error = "";
             Int64 max = 2147483647;
             Int64 min = 0;
-            DateTemp = Convert.ToDateTime(LastOrder);
+            
 
             try
             {
@@ -146,6 +146,8 @@ namespace ClassLibrary
                 Int64 Staff = Convert.ToInt64(StaffId);
                 Int64 Product = Convert.ToInt64(ProductId);
                 Int64 Supplier = Convert.ToInt64(SupplierId);
+                DateTemp = Convert.ToDateTime(LastOrder);
+
                 if (Order <= min)
                 {
                     Error = Error + "The  OrderId must be greater than 0 : ";

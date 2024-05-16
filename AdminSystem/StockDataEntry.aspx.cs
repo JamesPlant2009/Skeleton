@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Activities.Expressions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,16 +22,34 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         clsStock AnStock = new clsStock();
-        AnStock.StockId = txtStockID.Text;
-        AnStock.SupplierId = Convert.ToInt32(txtSupplierID.Text);    
-        AnStock.ProductId = Convert.ToInt32(txtProductID.Text);
-        AnStock.OrderId = Convert.ToInt32(txtOrderID.Text);
-        AnStock.StaffId = Convert.ToInt32(txtStaffID.Text);
-        AnStock.LastOrder = Convert.ToDateTime(txtLastOrder.Text);
-        AnStock.InStock = chk.Checked;
-        Session["AnStock"] = AnStock;
-        Response.Redirect("StockViewer.aspx");
+        //AnStock.StockId = txtStockID.Text;
+        string SupplierId = txtSupplierID.Text;
+        string ProductId = txtProductID.Text;
+        string OrderId = txtOrderID.Text;
+        string StaffId = txtStaffID.Text;
+        string LastOrder = txtLastOrder.Text;
+        string InStock = chkInStock.Text;
+        string Error = "";
+        Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+        if (Error == "")
+        {
+            AnStock.SupplierId = Convert.ToInt32(SupplierId);
+            AnStock.ProductId = Convert.ToInt32(ProductId);
+            AnStock.OrderId = Convert.ToInt32(OrderId);
+            AnStock.StaffId = Convert.ToInt32(StaffId);
+            AnStock.LastOrder = Convert.ToDateTime(LastOrder);
+
+            Session["AnStock"] = AnStock;
+            Response.Redirect("StockViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
     }
+        
+
+
 
     protected void txtStockID_TextChanged(object sender, EventArgs e)
     {
@@ -51,7 +70,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtProductID.Text = AnStock.ProductId.ToString();
             txtStaffID.Text = AnStock.StaffId.ToString();
             txtSupplierID.Text = AnStock.SupplierId.ToString();
-            chk.Checked = AnStock.InStock;
+            chkInStock.Checked = AnStock.InStock;
 
         }
     }
