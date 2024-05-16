@@ -644,7 +644,7 @@ namespace Testing1
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(-100);
-            string DateAdded = TestDate.ToString();
+            string LastOrder = TestDate.ToString();
             Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
             Assert.AreNotEqual(Error, "");
         }
@@ -657,7 +657,7 @@ namespace Testing1
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddDays(-1);
-            string DateAdded = TestDate.ToString();
+            string LastOrder = TestDate.ToString();
             Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
             Assert.AreNotEqual(Error, "");
         }
@@ -669,7 +669,7 @@ namespace Testing1
             string Error = "";
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
-            string DateAdded = TestDate.ToString();
+            string LastOrder = TestDate.ToString();
             Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
             Assert.AreEqual(Error, "");
         }
@@ -683,7 +683,7 @@ namespace Testing1
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddDays(1);
-            string DateAdded = TestDate.ToString();
+            string LastOrder = TestDate.ToString();
             Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
             Assert.AreNotEqual(Error, "");
         }
@@ -696,7 +696,7 @@ namespace Testing1
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(100);
-            string DateAdded = TestDate.ToString();
+            string LastOrder = TestDate.ToString();
             Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
             Assert.AreNotEqual(Error, "");
         }
