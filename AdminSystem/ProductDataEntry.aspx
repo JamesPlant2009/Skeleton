@@ -15,7 +15,7 @@
         </div>
         <p>
             &nbsp;</p>
-        <asp:TextBox ID="TxtproductName" runat="server" OnTextChanged="TextBox2_TextChanged" style="z-index: 1; left: 124px; top: 49px; position: absolute"></asp:TextBox>
+        <asp:TextBox ID="TxtproductName" runat="server"  style="z-index: 1; left: 124px; top: 49px; position: absolute"></asp:TextBox>
         <asp:Label ID="lblproductName" runat="server" style="z-index: 1; left: 12px; top: 44px; position: absolute" Text="Product Name"></asp:Label>
         <p>
             &nbsp;</p>
@@ -35,8 +35,8 @@
         </p>
         <p>
             &nbsp;</p>
-        <asp:Button ID="btnOk" runat="server" OnClick="btnOk_Click" style="z-index: 1; left: 60px; top: 279px; position: absolute" Text="Ok" />
-        <asp:Button ID="btnCancel" runat="server" OnClick="Button2_Click" style="z-index: 1; left: 161px; top: 277px; position: absolute" Text="Cancel" />
+        <asp:Button ID="btnOk" runat="server"  style="z-index: 1; left: 60px; top: 279px; position: absolute" Text="Ok" />
+        <asp:Button ID="btnCancel" runat="server"  style="z-index: 1; left: 161px; top: 277px; position: absolute" Text="Cancel" />
     </form>
 </body>
 </html>
