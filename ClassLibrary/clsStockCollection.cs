@@ -3,8 +3,11 @@ using System.Collections.Generic;
 
 namespace ClassLibrary
 {
+
     public class clsStockCollection
     {
+        public List<clsStock> mStockList = new List<clsStock>();
+        clsStock mThisStock = new clsStock();
         public clsStockCollection()
         {
             Int32 Index = 0;
@@ -27,7 +30,7 @@ namespace ClassLibrary
                 Index++;
             }
         }   
-        public List<clsStock> mStockList = new List<clsStock>();
+        
 
         public List<clsStock> StockList
         {
@@ -53,6 +56,31 @@ namespace ClassLibrary
             }
         }
 
-        public clsStock ThisStock { get; set; }
+        public clsStock ThisStock
+        {
+            get
+            {
+                return mThisStock;
+            }
+            set
+            {
+                mThisStock = value;
+            }
+        }
+
+
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@SupplierId", mThisStock.SupplierId);
+            DB.AddParameter("@ProductId", mThisStock.ProductId);
+            DB.AddParameter("@OrderId", mThisStock.OrderId);
+            DB.AddParameter("@StaffId", mThisStock.StaffId);
+            DB.AddParameter("@lastOrder", mThisStock.LastOrder);
+            DB.AddParameter("@InStock", mThisStock.InStock);
+
+            return DB.Execute("dbo.sproc_tblStock_Insert");
+
+        }
     }
 }
