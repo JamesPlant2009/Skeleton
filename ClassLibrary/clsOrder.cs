@@ -8,27 +8,51 @@ namespace ClassLibrary
         private DateTime mDateOrdered;
         private bool mOrderShipped;
         private string mStockId;
-        private string mCustomerId;
+        private Int32 mCustomerId;
         private Int32 mPrice;
 
         public bool OrderShipped 
-        { 
-            get; 
-            set; 
+        {
+            get 
+            {  
+                return mOrderShipped; 
+            }
+            set
+            {
+                mOrderShipped = value;
+            }
         }
         public DateTime DateOrdered 
-        { 
-            get; 
-            set; 
+        {
+            get
+            {
+                return mDateOrdered;
+            }
+            set
+            {
+                mDateOrdered = value;
+            }
         }
-        public string StockId { 
-            get; 
-            set; 
+        public string StockId {
+            get
+            {
+                return mStockId;
+            }
+            set
+            {
+                mStockId = value;
+            }
         }
         public Int32 CustomerId 
-        { 
-            get; 
-            set; 
+        {
+            get
+            {
+                return mCustomerId;
+            }
+            set
+            {
+                mCustomerId = value;
+            }
         }
         public Int32 OrderId 
         {
@@ -42,16 +66,36 @@ namespace ClassLibrary
             }
         }
         public int Price 
-        { 
-            get; 
-            set; 
+        {
+            get
+            {
+                return mPrice;
+            }
+            set
+            {
+                mPrice = value;
+            }
         }
 
         public bool Find(int orderId)
         {
-            mOrderId = 1;
-            mDateOrdered = Convert.ToDateTime("14/05/2024");
-            return true;
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@OrederId", OrderId);
+            DB.Execute("sproc_tblOrder_FilterByOrder");
+            if(DB.Count == 1 )
+            {
+                mOrderId = Convert.ToInt32(DB.DataTable.Rows[0]["orderId"]);
+                mStockId = Convert.ToString(DB.DataTable.Rows[0]["StockId"]);
+                mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
+                mDateOrdered = Convert.ToDateTime(DB.DataTable.Rows[0]["DateOrdered"]);
+                mPrice = Convert.ToInt32(DB.DataTable.Rows[0]["Price"]);
+                mOrderShipped = Convert.ToBoolean(DB.DataTable.Rows[0]["OrderShipped"]);
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
         }
     }
    
