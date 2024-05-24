@@ -7,6 +7,11 @@ namespace Testing2
     [TestClass]
     public class tstOrder
     {
+        string stockid = "4A";
+        string customerid = "7";
+        string price = "1000";
+        string orderdate = DateTime.Now.ToShortDateString();
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -152,6 +157,15 @@ namespace Testing2
                 OK=false;
             }
             Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public string ValidMethodOK()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string error = " ";
+            error = AnOrder.Valid(StockId, CustomerId, Price, OrderDate);
+            Assert.AreEqual(error, "");
+
         }
     }
 }

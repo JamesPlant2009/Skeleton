@@ -97,6 +97,11 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string StockId, string CustomerId, string price, string OrderDate)
+        {
+            return "";
+        }
     }
    
 }
