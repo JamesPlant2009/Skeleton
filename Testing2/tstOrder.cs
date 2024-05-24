@@ -66,7 +66,7 @@ namespace Testing2
         {
             clsOrder AnOrder = new clsOrder();
             Boolean Found = false;
-            Int32 OrderId = 1;
+            Int32 OrderId = 6;
             Found = AnOrder.Find(OrderId);
         }
         [TestMethod]
@@ -75,9 +75,9 @@ namespace Testing2
             clsOrder AnOrder = new clsOrder();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderId = 1;
+            Int32 OrderId = 6;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.OrderId != 1) 
+            if (AnOrder.OrderId != 6) 
             {
             OK = false;
             }
@@ -89,9 +89,9 @@ namespace Testing2
             clsOrder AnOrder = new clsOrder();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderId = 1;
+            Int32 OrderId = 6;
             Found = AnOrder.Find(OrderId);
-            if(AnOrder.CustomerId != 1)
+            if(AnOrder.CustomerId != 2)
             {
                 OK= false;
             }
@@ -103,9 +103,9 @@ namespace Testing2
             clsOrder AnOrder = new clsOrder();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderId = 1;
+            Int32 OrderId = 6;
             Found= AnOrder.Find(OrderId);
-            if(AnOrder.DateOrdered != Convert.ToDateTime("14/05/2025"))
+            if(AnOrder.DateOrdered != Convert.ToDateTime("24/05/2024"))
             {
             OK = false;
             }
@@ -117,9 +117,9 @@ namespace Testing2
             clsOrder AnOrder = new clsOrder();
             Boolean Found = false
                 , OK = true;
-            Int32 OrderId = 1;
+            Int32 OrderId = 6;
             Found = AnOrder.Find(OrderId);
-            if(AnOrder.Price != 1)
+            if(AnOrder.Price != 150)
             {
                 OK=false;
             }
@@ -131,9 +131,9 @@ namespace Testing2
             clsOrder AnOrder = new clsOrder();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderId = 1;
+            Int32 OrderId = 6;
             Found = AnOrder.Find(OrderId);
-            if(AnOrder.StockId != "123A")
+            if(AnOrder.StockId != "3B")
             {
                 OK=false;
             }
@@ -145,7 +145,7 @@ namespace Testing2
             clsOrder AnOrder = new clsOrder();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderId = 1;
+            Int32 OrderId = 6;
             Found = AnOrder.Find(OrderId);
             if( AnOrder.OrderShipped != true )
             {

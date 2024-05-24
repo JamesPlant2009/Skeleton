@@ -80,16 +80,16 @@ namespace ClassLibrary
         public bool Find(int orderId)
         {
             clsDataConnection DB = new clsDataConnection();
-            DB.AddParameter("@OrederId", OrderId);
-            DB.Execute("sproc_tblOrder_FilterByOrder");
+            DB.AddParameter("@OrderId", orderId);
+            DB.Execute("sproc_tblOrder_FilterByOrederId");
             if(DB.Count == 1 )
             {
-                mOrderId = Convert.ToInt32(DB.DataTable.Rows[0]["orderId"]);
-                mStockId = Convert.ToString(DB.DataTable.Rows[0]["StockId"]);
-                mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
-                mDateOrdered = Convert.ToDateTime(DB.DataTable.Rows[0]["DateOrdered"]);
-                mPrice = Convert.ToInt32(DB.DataTable.Rows[0]["Price"]);
-                mOrderShipped = Convert.ToBoolean(DB.DataTable.Rows[0]["OrderShipped"]);
+                mOrderId = Convert.ToInt32(DB.DataTable.Rows[0]["order_Id"]);
+                mStockId = Convert.ToString(DB.DataTable.Rows[0]["stock_Id"]);
+                mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["customer_Id"]);
+                mDateOrdered = Convert.ToDateTime(DB.DataTable.Rows[0]["order_date"]);
+                mPrice = Convert.ToInt32(DB.DataTable.Rows[0]["price"]);
+                mOrderShipped = Convert.ToBoolean(DB.DataTable.Rows[0]["order_shipped"]);
                 return true;
             }
             else 
