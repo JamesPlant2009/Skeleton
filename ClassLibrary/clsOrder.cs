@@ -100,8 +100,22 @@ namespace ClassLibrary
 
         public string Valid(string StockId, string CustomerId, string price, string OrderDate)
         {
-            return "";
+            string error = "";
+            if (StockId.Length == 0)
+            {
+                error = error + " The Stock Id must not be left blank";
+            }
+            if (StockId.Length > 8) 
+            {
+                error = error + " The lenght of Stock Id must not be more than 8 chars";
+            }
+            if (CustomerId.Length == 0)
+            {
+                error = error + " The customer Id cannot be left blank";
+            }
+            return error;
         }
+
     }
    
 }

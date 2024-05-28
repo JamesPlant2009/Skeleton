@@ -7,10 +7,10 @@ namespace Testing2
     [TestClass]
     public class tstOrder
     {
-        string stockid = "4A";
-        string customerid = "7";
+        string stockId = "4A";
+        string customerId = "7";
         string price = "1000";
-        string orderdate = DateTime.Now.ToShortDateString();
+        string orderDate = DateTime.Now.ToShortDateString();
 
         [TestMethod]
         public void InstanceOK()
@@ -159,13 +159,86 @@ namespace Testing2
             Assert.IsTrue(OK);
         }
         [TestMethod]
-        public string ValidMethodOK()
+        public void ValidMethodOK()
         {
             clsOrder AnOrder = new clsOrder();
             string error = " ";
-            error = AnOrder.Valid(StockId, CustomerId, Price, OrderDate);
+            error = AnOrder.Valid(stockId, customerId, price, orderDate);
             Assert.AreEqual(error, "");
 
+        }
+        [TestMethod]
+        public void StockIdMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string stockId = "1";
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void StockIdMinPlusOne() 
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string stockId = "1A";
+            Error  = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void StockIdMinMinusOne() 
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string stockId = "";
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreEqual(Error, " The Stock Id must not be left blank");
+        }
+        [TestMethod]
+        public void StockIdMaxMinusOne() 
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string stockId = "1AAAAAA";
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void StockIdMax() 
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string stockId = "1AAAAAAA";
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void StockIdMaxPlusOne() 
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string stockId = "1AAAAAAAA";
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreEqual(Error, " The lenght of Stock Id must not be more than 8 chars");
+        }
+        [TestMethod]
+        public void StockIdMid()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string stockId = "1AAA";
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void StockIdExMax() 
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string stockId = "";
+            stockId = stockId.PadRight(500, 'A');
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreEqual(Error, " The lenght of Stock Id must not be more than 8 chars");
         }
     }
 }
