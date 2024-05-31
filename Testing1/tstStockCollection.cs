@@ -21,11 +21,12 @@ namespace Testing1
             clsStockCollection AllStock = new clsStockCollection();
             List<clsStock> TestList = new List<clsStock>();
             clsStock TestItem = new clsStock();
+            TestItem.IdentityId = 1;
             TestItem.StockId = "AP1A240405002";
-            TestItem.SupplierId = 1;
-            TestItem.ProductId = 2;
-            TestItem.OrderId = 3;
-            TestItem.StaffId = 4;
+            TestItem.SupplierId = 2;
+            TestItem.ProductId = 3;
+            TestItem.OrderId = 4;
+            TestItem.StaffId = 5;
             TestItem.LastOrder = DateTime.Now;
             TestItem.InStock = true;
             TestList.Add(TestItem);
@@ -40,11 +41,12 @@ namespace Testing1
         {
             clsStockCollection AllStock = new clsStockCollection();
             clsStock TestStock = new clsStock();
+            TestStock.IdentityId = 1;
             TestStock.StockId = "AP1A240405002";
-            TestStock.SupplierId = 1;
-            TestStock.ProductId = 2;
-            TestStock.OrderId = 3;
-            TestStock.StaffId = 4;
+            TestStock.SupplierId = 2;
+            TestStock.ProductId = 3;
+            TestStock.OrderId = 4;
+            TestStock.StaffId = 5;
             TestStock.LastOrder = DateTime.Now;
             TestStock.InStock = true;
             AllStock.ThisStock = TestStock;
@@ -57,11 +59,12 @@ namespace Testing1
             clsStockCollection AllStock = new clsStockCollection();
             List<clsStock> TestList = new List<clsStock>();
             clsStock TestItem = new clsStock();
+            TestItem.IdentityId = 1;
             TestItem.StockId = "AP1A240405002";
-            TestItem.SupplierId = 1;
-            TestItem.ProductId = 2;
-            TestItem.OrderId = 3;
-            TestItem.StaffId = 4;
+            TestItem.SupplierId = 2;
+            TestItem.ProductId = 3;
+            TestItem.OrderId = 4;
+            TestItem.StaffId = 5;
             TestItem.LastOrder = DateTime.Now;
             TestItem.InStock = true;
             TestList.Add(TestItem);
@@ -71,16 +74,17 @@ namespace Testing1
 
 
         [TestMethod]
-        public void AddMethodOK()//If data type changes this needs to change
+        public void AddMethodOK()
         {
             clsStockCollection AllStocks = new clsStockCollection();
             clsStock TestItem = new clsStock();
-            string PrimaryKey = "AP15";
+            int PrimaryKey = 0;
+            TestItem.IdentityId = 30;
             TestItem.StockId = "AP10";
-            TestItem.SupplierId = 1;
-            TestItem.ProductId = 2;
-            TestItem.OrderId = 3;
-            TestItem.StaffId = 4;
+            TestItem.SupplierId = 2;
+            TestItem.ProductId = 3;
+            TestItem.OrderId = 4;
+            TestItem.StaffId = 5;
             TestItem.LastOrder = DateTime.Now;
             TestItem.InStock = true;
 
@@ -89,7 +93,7 @@ namespace Testing1
             
             PrimaryKey = AllStocks.Add();
 
-            TestItem.StockId = PrimaryKey;
+            TestItem.IdentityId = PrimaryKey;
 
             AllStocks.ThisStock.Find(PrimaryKey);
 
@@ -104,7 +108,8 @@ namespace Testing1
         {
             clsStockCollection AllStock = new clsStockCollection();
             clsStock TestItem = new clsStock();
-            string PrimaryKey = "AP10";
+            int PrimaryKey = 0;
+            
             TestItem.StockId = "AP10";
             TestItem.SupplierId = 1;
             TestItem.ProductId = 2;
@@ -118,7 +123,7 @@ namespace Testing1
             
             PrimaryKey = AllStock.Add();
 
-            TestItem.StockId = PrimaryKey;
+            TestItem.IdentityId = PrimaryKey;
 
             TestItem.SupplierId = 10;
             TestItem.ProductId = 20;

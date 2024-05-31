@@ -8,6 +8,7 @@ using ClassLibrary;
 
 public partial class _1_List : System.Web.UI.Page
 {
+    
     protected void Page_Load(object sender, EventArgs e)
     {
         if (IsPostBack == false)
@@ -28,22 +29,22 @@ public partial class _1_List : System.Web.UI.Page
 
     protected void btnAdd_Click(object sender, EventArgs e)//If data type changes this needs to change
     {
-        Session["StockId"] = "";
+        Session["IdentityId"] = -1;
         Response.Redirect("StockDataEntry.aspx");
     }
 
     protected void btnEdit_Click(object sender, EventArgs e)//If data type changes this needs to change
     {
-        string StockId;
-        if (lstStockList.SelectedIndex.Equals(""))//again does this just work?
-        { 
-            StockId = lstStockList.SelectedValue;
-            Session["StockId"] = StockId;
+        Int32 IdentityId;
+        if (lstStockList.SelectedIndex != -1 ) 
+        {
+            IdentityId = Convert.ToInt32(lstStockList.SelectedValue);
+            Session["IdentityId"] = IdentityId;
             Response.Redirect("StockDataEntry.aspx");
         }
         else
         {
-            lblError.Text = "Please select a record from the list";
+            lblError.Text = "Please Select a record from the list to edit";
         }
     }
 }
