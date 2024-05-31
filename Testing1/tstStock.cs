@@ -12,7 +12,7 @@ namespace Testing1
 
         //good test data
         string SupplierId = "15";
-        string StaffId = "30";
+        string StaffId = "30";//If data type changes this needs to change
         string ProductId = "500";
         string OrderId = "675";
         string LastOrder = DateTime.Now.ToShortDateString();
@@ -94,7 +94,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void StaffIdPropertyOK()
+        public void StaffIdPropertyOK()//If data type changes this needs to change
         {
             //create an instance of the class we want to create
             clsStock AnStock = new clsStock();
@@ -107,7 +107,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void FindMethodOK()
+        public void FindMethodOK()//If data type changes this needs to change
         {
             clsStock AnStock = new clsStock();
             Boolean Found = false;
@@ -117,7 +117,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void TestStockIdFound()
+        public void TestStockIdFound()//If data type changes this needs to change
         {
             clsStock AnStock = new clsStock();
             Boolean Found = false;
@@ -207,7 +207,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void TestStaffIdFound()
+        public void TestStaffIdFound()//If data type changes this needs to change
         {
             clsStock AnStock = new clsStock();
             Boolean Found = false;
@@ -536,7 +536,7 @@ namespace Testing1
         //Start of StaffID tests
 
         [TestMethod]
-        public void StaffIdExtMin()
+        public void StaffIdExtMin()//If data type changes this needs to change
         {
             clsStock AnStock = new clsStock();
             string Error = "";
@@ -546,7 +546,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void StaffIdMinLessOne()
+        public void StaffIdMinLessOne()//If data type changes this needs to change
         {
             clsStock AnStock = new clsStock();
             string Error = "";
@@ -556,7 +556,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void StaffIdMin()
+        public void StaffIdMin()//If data type changes this needs to change
         {
             clsStock AnStock = new clsStock();
             string Error = "";
@@ -567,7 +567,7 @@ namespace Testing1
 
 
         [TestMethod]
-        public void StaffIdExtMinPlusOne()
+        public void StaffIdExtMinPlusOne()//If data type changes this needs to change
         {
             clsStock AnStock = new clsStock();
             string Error = "";
@@ -577,7 +577,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void StaffIdMaxLessOne()
+        public void StaffIdMaxLessOne()//If data type changes this needs to change
         {
             clsStock AnStock = new clsStock();
             string Error = "";
@@ -587,7 +587,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void SatffIdMax()
+        public void SatffIdMax()//If data type changes this needs to change
         {
             clsStock AnStock = new clsStock();
             string Error = "";
@@ -597,7 +597,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void StaffIdMaxPlusOne()
+        public void StaffIdMaxPlusOne()//If data type changes this needs to change
         {
             clsStock AnStock = new clsStock();
             string Error = "";
@@ -606,7 +606,7 @@ namespace Testing1
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
-        public void StaffIdMid()
+        public void StaffIdMid()//If data type changes this needs to change
         {
             clsStock AnStock = new clsStock();
             string Error = "";
@@ -615,7 +615,7 @@ namespace Testing1
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
-        public void StaffIdExtMax()
+        public void StaffIdExtMax()//If data type changes this needs to change
         {
             clsStock AnStock = new clsStock();
             string Error = "";
@@ -625,7 +625,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void StaffIdExtInvalidDataType()
+        public void StaffIdExtInvalidDataType()//If data type changes this needs to change
         {
             clsStock AnStock = new clsStock();
             string Error = "";
@@ -637,7 +637,7 @@ namespace Testing1
 
         //Start of LastOrder tests
         [TestMethod]
-        public void LastOrderExtMin()
+        public void LastOrderExtMin()//If data type changes this needs to change
         {
             clsStock AnStock = new clsStock();
             string Error = "";
@@ -650,7 +650,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void LastOrderMinLessOne()
+        public void LastOrderMinLessOne()//If data type changes this needs to change
         {
             clsStock AnStock = new clsStock();
             string Error = "";
@@ -663,7 +663,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void LastOrderMin()
+        public void LastOrderMin()//If data type changes this needs to change
         {
             clsStock AnStock = new clsStock();
             string Error = "";
@@ -676,7 +676,7 @@ namespace Testing1
 
         
         [TestMethod]
-        public void LastOrderMinPlusOne()
+        public void LastOrderMinPlusOne()//If data type changes this needs to change
         {
             clsStock AnStock = new clsStock();
             string Error = "";
@@ -689,7 +689,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void LastOrderExtMax()
+        public void LastOrderExtMax()//If data type changes this needs to change
         {
             clsStock AnStock = new clsStock();
             string Error = "";

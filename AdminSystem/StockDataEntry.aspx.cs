@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Activities.Expressions;
+using System.Activities.Validation;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,10 +20,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     }
 
-    protected void Button1_Click(object sender, EventArgs e)
+    protected void Button1_Click(object sender, EventArgs e)//If data type changes this needs to change
     {
         clsStock AnStock = new clsStock();
-        //AnStock.StockId = txtStockID.Text;
+        string StockId = txtStockID.Text;
         string SupplierId = txtSupplierID.Text;
         string ProductId = txtProductID.Text;
         string OrderId = txtOrderID.Text;
@@ -33,14 +34,28 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
         if (Error == "")
         {
+            AnStock.StockId = StockId;
             AnStock.SupplierId = Convert.ToInt32(SupplierId);
             AnStock.ProductId = Convert.ToInt32(ProductId);
             AnStock.OrderId = Convert.ToInt32(OrderId);
             AnStock.StaffId = Convert.ToInt32(StaffId);
             AnStock.LastOrder = Convert.ToDateTime(LastOrder);
 
-            Session["AnStock"] = AnStock;
-            Response.Redirect("StockViewer.aspx");
+            clsStockCollection StockList = new clsStockCollection();
+            if (StockId.Equals(""))
+            {
+                StockList.ThisStock = AnStock;
+                StockList.Add();
+
+            }
+
+            else
+            {
+                StockList.ThisStock.Find(StockId);
+                StockList.ThisStock = AnStock;
+                StockList.Update();
+            }
+            Response.Redirect("StockList.aspx");
         }
         else
         {
@@ -56,7 +71,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     }
 
-    protected void btnFind_Click(object sender, EventArgs e)
+    protected void btnFind_Click(object sender, EventArgs e)//If data type changes this needs to change
     {
         clsStock AnStock = new clsStock();
         String StockID;
@@ -72,6 +87,18 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtSupplierID.Text = AnStock.SupplierId.ToString();
             chkInStock.Checked = AnStock.InStock;
 
+        }
+
+        void DisplayStock()//If data type changes this needs to change
+        {
+            clsStockCollection StockBook = new clsStockCollection();
+            StockBook.ThisStock.Find(StockID);
+            txtLastOrder.Text = AnStock.LastOrder.ToString();
+            txtOrderID.Text = AnStock.OrderId.ToString();
+            txtProductID.Text = AnStock.ProductId.ToString();
+            txtStaffID.Text = AnStock.StaffId.ToString();
+            txtSupplierID.Text = AnStock.SupplierId.ToString();
+            chkInStock.Checked = AnStock.InStock;
         }
     }
 }

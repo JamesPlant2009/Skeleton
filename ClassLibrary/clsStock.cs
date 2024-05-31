@@ -5,13 +5,13 @@ namespace ClassLibrary
 {
     public class clsStock
     {
-        private string mStockId;
+        private string mStockId;//If data type changes this needs to change
         private Boolean mInStock;
         private DateTime mLastOrder;
         private int mSupplierId;
         private int mProductId;
         private int mOrderId;
-        private int mStaffId;
+        private int mStaffId;//If data type changes this needs to change
 
         public bool InStock
         {
@@ -41,7 +41,7 @@ namespace ClassLibrary
 
 
 
-        public string StockId
+        public string StockId//If data type changes this needs to change
         {
             get
             {
@@ -97,7 +97,7 @@ namespace ClassLibrary
         }
 
 
-        public int StaffId
+        public int StaffId//If data type changes this needs to change
         {
             get
             {
@@ -112,17 +112,17 @@ namespace ClassLibrary
         public bool Find(string StockID)
         {
             clsDataConnection DB = new clsDataConnection();
-            DB.AddParameter("@StockID", StockID); //should be StockID?
+            DB.AddParameter("@StockID", StockID); 
             DB.Execute("dbo.sproc_tblStock_FilteringByStockID");
             if (DB.Count == 1)
             {
-                mStockId = Convert.ToString(DB.DataTable.Rows[0]["StockID"]);
+                mStockId = Convert.ToString(DB.DataTable.Rows[0]["StockID"]);//If data type changes this needs to change
                 mInStock = Convert.ToBoolean(DB.DataTable.Rows[0]["InStock"]);
                 mLastOrder = Convert.ToDateTime(DB.DataTable.Rows[0]["LastOrder"]);
                 mSupplierId = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierID"]);
                 mProductId = Convert.ToInt32(DB.DataTable.Rows[0]["ProductID"]);
                 mOrderId = Convert.ToInt32(DB.DataTable.Rows[0]["OrderID"]);
-                mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffID"]);
+                mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffID"]);//If data type changes this needs to change
                 return true;
             }
             else
@@ -143,7 +143,7 @@ namespace ClassLibrary
             try
             {
                 Int64 Order = Convert.ToInt64(OrderId);
-                Int64 Staff = Convert.ToInt64(StaffId);
+                Int64 Staff = Convert.ToInt64(StaffId);//If data type changes this needs to change
                 Int64 Product = Convert.ToInt64(ProductId);
                 Int64 Supplier = Convert.ToInt64(SupplierId);
                 DateTemp = Convert.ToDateTime(LastOrder);
@@ -157,7 +157,7 @@ namespace ClassLibrary
                     Error = Error + "The  OrderId must be smaller than 2,147,483,647 : ";
                 }
 
-                if (Staff <= min)
+                if (Staff <= min)//If data type changes this needs to change
                 {
                     Error = Error + "The  OrderId must be greater than 0 : ";
                 }

@@ -3,9 +3,12 @@ using System.Collections.Generic;
 
 namespace ClassLibrary
 {
+
     public class clsStockCollection
     {
-        public clsStockCollection()
+        public List<clsStock> mStockList = new List<clsStock>();
+        clsStock mThisStock = new clsStock();
+        public clsStockCollection()//If data type changes this needs to change
         {
             Int32 Index = 0;
             Int32 RecordCount = 0;
@@ -27,7 +30,7 @@ namespace ClassLibrary
                 Index++;
             }
         }   
-        public List<clsStock> mStockList = new List<clsStock>();
+        
 
         public List<clsStock> StockList
         {
@@ -53,6 +56,46 @@ namespace ClassLibrary
             }
         }
 
-        public clsStock ThisStock { get; set; }
+        public clsStock ThisStock
+        {
+            get
+            {
+                return mThisStock;
+            }
+            set
+            {
+                mThisStock = value;
+            }
+        }
+
+
+        public int Add()//If data type changes this needs to change
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@StockID", mThisStock.StockId);
+            DB.AddParameter("@SupplierId", mThisStock.SupplierId);
+            DB.AddParameter("@ProductId", mThisStock.ProductId);
+            DB.AddParameter("@OrderId", mThisStock.OrderId);
+            DB.AddParameter("@StaffId", mThisStock.StaffId);
+            DB.AddParameter("@lastOrder", mThisStock.LastOrder);
+            DB.AddParameter("@InStock", mThisStock.InStock);
+
+            return DB.Execute("dbo.sproc_tblStock_Insert");
+
+        }
+
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@StockId", mThisStock.StockId);
+            DB.AddParameter("@SupplierId", mThisStock.SupplierId);
+            DB.AddParameter("@ProductId", mThisStock.ProductId);
+            DB.AddParameter("@OrderId", mThisStock.OrderId);
+            DB.AddParameter("@StaffId", mThisStock.StaffId);
+            DB.AddParameter("@lastOrder", mThisStock.LastOrder);
+            DB.AddParameter("@InStock", mThisStock.InStock);
+
+            DB.Execute("dbo.sproc_tblStock_Update");
+        }
     }
 }

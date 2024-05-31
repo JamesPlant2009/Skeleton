@@ -16,7 +16,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void StockListOK()
+        public void StockListOK()//If data type changes this needs to change
         {
             clsStockCollection AllStock = new clsStockCollection();
             List<clsStock> TestList = new List<clsStock>();
@@ -36,7 +36,7 @@ namespace Testing1
 
 
         [TestMethod]
-        public void ThisStockPropertyOK()
+        public void ThisStockPropertyOK()//If data type changes this needs to change
         {
             clsStockCollection AllStock = new clsStockCollection();
             clsStock TestStock = new clsStock();
@@ -52,7 +52,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void ListAndCountOK()
+        public void ListAndCountOK()//If data type changes this needs to change
         {
             clsStockCollection AllStock = new clsStockCollection();
             List<clsStock> TestList = new List<clsStock>();
@@ -68,6 +68,79 @@ namespace Testing1
             AllStock.StockList = TestList;
             Assert.AreEqual(AllStock.Count, TestList.Count);
         }
+
+
+        [TestMethod]
+        public void AddMethodOK()//If data type changes this needs to change
+        {
+            clsStockCollection AllStocks = new clsStockCollection();
+            clsStock TestItem = new clsStock();
+            string PrimaryKey = "AP15";
+            TestItem.StockId = "AP10";
+            TestItem.SupplierId = 1;
+            TestItem.ProductId = 2;
+            TestItem.OrderId = 3;
+            TestItem.StaffId = 4;
+            TestItem.LastOrder = DateTime.Now;
+            TestItem.InStock = true;
+
+            AllStocks.ThisStock = TestItem;
+
+            
+            PrimaryKey = AllStocks.Add();
+
+            TestItem.StockId = PrimaryKey;
+
+            AllStocks.ThisStock.Find(PrimaryKey);
+
+            Assert.AreEqual(AllStocks.ThisStock, TestItem);
+
+
+        }
+
+
+        [TestMethod]
+        public void UpdateMethodOK()//If data type changes this needs to change
+        {
+            clsStockCollection AllStock = new clsStockCollection();
+            clsStock TestItem = new clsStock();
+            string PrimaryKey = "AP10";
+            TestItem.StockId = "AP10";
+            TestItem.SupplierId = 1;
+            TestItem.ProductId = 2;
+            TestItem.OrderId = 3;
+            TestItem.StaffId = 4;
+            TestItem.LastOrder = DateTime.Now;
+            TestItem.InStock = true;
+
+            AllStock.ThisStock = TestItem;
+
+            
+            PrimaryKey = AllStock.Add();
+
+            TestItem.StockId = PrimaryKey;
+
+            TestItem.SupplierId = 10;
+            TestItem.ProductId = 20;
+            TestItem.OrderId = 30;
+            TestItem.StaffId = 40;
+            TestItem.LastOrder = DateTime.Now;
+            TestItem.InStock = false;
+
+            AllStock.ThisStock = TestItem;
+            AllStock.Update();
+
+            AllStock.ThisStock.Find(PrimaryKey);
+
+            Assert.AreEqual(AllStock.ThisStock, TestItem);
+
+
+        }
+
+
+
+
+
 
     }
 }
