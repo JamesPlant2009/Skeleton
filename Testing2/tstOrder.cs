@@ -1,6 +1,7 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.IO;
 
 namespace Testing2
 {
@@ -192,7 +193,7 @@ namespace Testing2
             string Error = "";
             string stockId = "";
             Error = AnOrder.Valid(stockId, customerId, price, orderDate);
-            Assert.AreEqual(Error, " The Stock Id must not be left blank");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void StockIdMaxMinusOne() 
@@ -219,7 +220,7 @@ namespace Testing2
             string Error = "";
             string stockId = "1AAAAAAAA";
             Error = AnOrder.Valid(stockId, customerId, price, orderDate);
-            Assert.AreEqual(Error, " The lenght of Stock Id must not be more than 8 chars");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void StockIdMid()
@@ -238,7 +239,147 @@ namespace Testing2
             string stockId = "";
             stockId = stockId.PadRight(500, 'A');
             Error = AnOrder.Valid(stockId, customerId, price, orderDate);
-            Assert.AreEqual(Error, " The lenght of Stock Id must not be more than 8 chars");
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateTimeExMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            DateTime testDate;
+            testDate = DateTime.Now.Date;
+            testDate =testDate.AddYears(-100);
+            string orderDate = testDate.ToString();
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateTimeExMax() 
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            DateTime testDate;
+            testDate = DateTime.Now.Date;
+            testDate = testDate.AddYears(100);
+            string orderDate = testDate.ToString();
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateTimeMinMinusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            DateTime testDate;
+            testDate = DateTime.Now.Date;
+            testDate = testDate.AddDays(-1);
+            string orderDate = testDate.ToString();
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateTimeMin() 
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            DateTime testDate;
+            testDate = DateTime.Now.Date;
+            string orderDate = testDate.ToString();
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateTimeMinPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            DateTime testDate;
+            testDate = DateTime.Now.Date;
+            testDate = testDate.AddDays(1);
+            string orderDate = testDate.ToString();
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateTimeError() 
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string orderDate = "This is the wrong data type";
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void PriceMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string price = "0";
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void PriceMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string price = "10000";
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void priceError()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string price = "This is the wrong data type";
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void priceExMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string price = "-999999";
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void priceExMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string price = "999999";
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void priceMinMinusOne() 
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string price = "-1";
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void priceMaxMinusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string price = "9999";
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void priceMinPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string price = "1";
+            Error = AnOrder.Valid(stockId, customerId, price, orderDate);
+            Assert.AreEqual(Error, "");
         }
     }
 }

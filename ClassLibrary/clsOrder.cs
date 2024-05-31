@@ -101,6 +101,8 @@ namespace ClassLibrary
         public string Valid(string StockId, string CustomerId, string price, string OrderDate)
         {
             string error = "";
+            DateTime tempDate;
+            Int32 tempInt;
             if (StockId.Length == 0)
             {
                 error = error + " The Stock Id must not be left blank";
@@ -109,11 +111,35 @@ namespace ClassLibrary
             {
                 error = error + " The lenght of Stock Id must not be more than 8 chars";
             }
-            if (CustomerId.Length == 0)
+            try
             {
-                error = error + " The customer Id cannot be left blank";
+                tempDate = Convert.ToDateTime(OrderDate);
+                tempInt = Convert.ToInt32(price);
+                tempInt = Convert.ToInt32(CustomerId);
+
+                if (tempDate < DateTime.Now.Date)
+                {
+                    error = error + " The date cannot be in the past";
+                }
+                if (tempDate > DateTime.Now.Date)
+                {
+                    error = error + " The date cannot be in the future";
+                }
+                if (tempInt <= 0)
+                {
+                    error = error + " The price cannot be below 0";
+                }
+                if (tempInt >= 10000)
+                {
+                    error = error + " The price cannot be over 10000";
+                }
+                return error;
             }
-            return error;
+            catch
+            {
+                error += " Please input the correct data format";
+                return error;
+            }
         }
 
     }
