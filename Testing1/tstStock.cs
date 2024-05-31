@@ -15,6 +15,7 @@ namespace Testing1
         string StaffId = "30";//If data type changes this needs to change
         string ProductId = "500";
         string OrderId = "675";
+        string StockId = "AP10";
         string LastOrder = DateTime.Now.ToShortDateString();
 
         [TestMethod]
@@ -107,24 +108,37 @@ namespace Testing1
         }
 
         [TestMethod]
+        public void IdentityIdPropertyOK()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //create some test data to assign to the property
+            Int32 TestData = 1;
+            //assign the data to the property
+            AnStock.IdentityId = TestData;
+            //test to see that the two values are the same
+            Assert.AreEqual(AnStock.IdentityId, TestData);
+        }
+
+        [TestMethod]
         public void FindMethodOK()//If data type changes this needs to change
         {
             clsStock AnStock = new clsStock();
             Boolean Found = false;
-            string StockID = "AP1A240405002";
-            Found = AnStock.Find(StockID);
+            int IdentityID = 1;
+            Found = AnStock.Find(IdentityID);
             Assert.IsTrue(Found);
         }
 
         [TestMethod]
-        public void TestStockIdFound()//If data type changes this needs to change
+        public void TestStockIdFound()
         {
             clsStock AnStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            string StockID = "AP1A240405002";
-            Found = AnStock.Find(StockID);
-            if (AnStock.StockId != "AP1A240405002")
+            int IdentityID = 1;
+            Found = AnStock.Find(IdentityID);
+            if (AnStock.StockId != "AP10")
             {
                 OK = false;
             }
@@ -137,8 +151,8 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            string StockID = "AP1A240405002";
-            Found = AnStock.Find(StockID);
+            int IdentityID = 1;
+            Found = AnStock.Find(IdentityID);
             if (AnStock.InStock != true)
             {
                 OK = false;
@@ -152,9 +166,9 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            string StockID = "AP1A240405002";
-            Found = AnStock.Find(StockID);
-            if (AnStock.LastOrder != Convert.ToDateTime("10/05/2024"))
+            int IdentityID = 1;
+            Found = AnStock.Find(IdentityID);
+            if (AnStock.LastOrder != Convert.ToDateTime("24/05/2024"))
             {
                 OK = false;
             }
@@ -167,9 +181,9 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            string StockID = "AP1A240405002";
-            Found = AnStock.Find(StockID);
-            if (AnStock.SupplierId != 21)
+            int IdentityID = 1;
+            Found = AnStock.Find(IdentityID);
+            if (AnStock.SupplierId != 1)
             {
                 OK = false;
             }
@@ -182,9 +196,9 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            string StockID = "AP1A240405002";
-            Found = AnStock.Find(StockID);
-            if (AnStock.ProductId != 21)
+            int IdentityID = 1;
+            Found = AnStock.Find(IdentityID);
+            if (AnStock.ProductId != 23)
             {
                 OK = false;
             }
@@ -197,9 +211,9 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            string StockID = "AP1A240405002";
-            Found = AnStock.Find(StockID);
-            if (AnStock.OrderId != 21)
+            int IdentityID = 1;
+            Found = AnStock.Find(IdentityID); 
+            if (AnStock.OrderId != 9)
             {
                 OK = false;
             }
@@ -212,9 +226,9 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            string StockID = "AP1A240405002";
-            Found = AnStock.Find(StockID);
-            if (AnStock.StaffId != 21)
+            int IdentityID = 1;
+            Found = AnStock.Find(IdentityID);
+            if (AnStock.StaffId != 5)
             {
                 OK = false;
             }
@@ -226,7 +240,7 @@ namespace Testing1
         {
            clsStock AnStock = new clsStock();
             string Error = "";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
 
@@ -239,7 +253,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string OrderId = "-100000000000";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -249,7 +263,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string OrderId = "0";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -259,7 +273,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string OrderId = "1";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
 
@@ -270,7 +284,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string OrderId = "2";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
 
@@ -280,7 +294,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string OrderId = "2147483646";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
 
@@ -290,7 +304,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string OrderId = "2147483647";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
 
@@ -300,7 +314,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string OrderId = "2147483648";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -309,7 +323,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string OrderId = "1073741824";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -318,7 +332,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string OrderId = "100000000000";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -328,7 +342,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string OrderId = "Fred";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -340,7 +354,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string SupplierId = "-100000000000";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -350,7 +364,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string SupplierId = "0";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -360,7 +374,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string SupplierId = "1";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
 
@@ -371,7 +385,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string SupplierId = "2";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
 
@@ -381,7 +395,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string SupplierId = "2147483646";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
 
@@ -391,7 +405,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string SupplierId = "2147483647";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
 
@@ -401,7 +415,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string SupplierId = "2147483648";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -410,7 +424,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string SupplierId = "1073741824";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -419,7 +433,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string SupplierId = "100000000000";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -429,7 +443,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string SupplierId = "Fred";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -440,7 +454,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string ProductId = "-100000000000";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -450,7 +464,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string ProductId = "0";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -460,7 +474,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string ProductId = "1";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
 
@@ -471,7 +485,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string ProductId = "2";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
 
@@ -481,7 +495,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string ProductId = "2147483646";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
 
@@ -491,7 +505,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string ProductId = "2147483647";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
 
@@ -501,7 +515,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string ProductId = "2147483648";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -510,7 +524,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string ProductId = "1073741824";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -519,7 +533,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string ProductId = "100000000000";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -529,7 +543,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string ProductId = "Fred";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -541,7 +555,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string StaffId = "-100000000000";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -551,7 +565,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string StaffId = "0";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -561,7 +575,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string StaffId = "1";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
 
@@ -572,7 +586,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string StaffId = "2";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
 
@@ -582,7 +596,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string StaffId = "2147483646";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
 
@@ -592,7 +606,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string StaffId = "2147483647";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
 
@@ -602,7 +616,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string StaffId = "2147483648";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -611,7 +625,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string StaffId = "1073741824";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -620,7 +634,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string StaffId = "100000000000";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -630,7 +644,7 @@ namespace Testing1
             clsStock AnStock = new clsStock();
             string Error = "";
             string StaffId = "Fred";
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -645,7 +659,7 @@ namespace Testing1
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(-100);
             string LastOrder = TestDate.ToString();
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -658,7 +672,7 @@ namespace Testing1
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddDays(-1);
             string LastOrder = TestDate.ToString();
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -670,7 +684,7 @@ namespace Testing1
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             string LastOrder = TestDate.ToString();
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreEqual(Error, "");
         }
 
@@ -684,7 +698,7 @@ namespace Testing1
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddDays(1);
             string LastOrder = TestDate.ToString();
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -697,10 +711,100 @@ namespace Testing1
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(100);
             string LastOrder = TestDate.ToString();
-            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder);
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
             Assert.AreNotEqual(Error, "");
         }
 
+        //Start of StockId validation
+
+        [TestMethod]
+        public void StockIdMinLessOne()//If data type changes this needs to change
+        {
+            clsStock AnStock = new clsStock();
+            string Error = "";
+            string StockId = "";
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void StockIdMin()
+        {
+            clsStock AnStock = new clsStock();
+            string Error = "";
+            string StockId = "a";
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void StockIdMinPlusOne()
+        {
+            clsStock AnStock = new clsStock();
+            string Error = "";
+            string StockId = "aa";
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void StockIdMaxLessOne()
+        {
+            clsStock AnStock = new clsStock();
+            string Error = "";
+            string StockId = "aaaaaaa";
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void StockIdMax()
+        {
+            clsStock AnStock = new clsStock();
+            string Error = "";
+            string StockId = "aaaaaaaa";
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void StockIdMaxPlusOne()
+        {
+            clsStock AnStock = new clsStock();
+            string Error = "";
+            string StockId = "aaaaaaaaa";
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void StockIdMid()
+        {
+            clsStock AnStock = new clsStock();
+            string Error = "";
+            string StockId = "aaaa";
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void StockIdExtremeMax()
+        {
+            clsStock AnStock = new clsStock();
+            string Error = "";
+            string StockId = "";
+            StockId = StockId.PadRight(500, 'a');
+            Error = AnStock.Valid(SupplierId, ProductId, OrderId, StaffId, LastOrder, StockId);
+            Assert.AreNotEqual(Error, "");
+
+        }
 
 
 

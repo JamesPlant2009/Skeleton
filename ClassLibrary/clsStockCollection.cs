@@ -19,6 +19,7 @@ namespace ClassLibrary
             {
                 clsStock AnStock = new clsStock();
 
+                AnStock.IdentityId = Convert.ToInt32(DB.DataTable.Rows[Index]["IdentityId"]);
                 AnStock.StockId = Convert.ToString(DB.DataTable.Rows[Index]["StockId"]);
                 AnStock.SupplierId = Convert.ToInt32(DB.DataTable.Rows[Index]["SupplierId"]);
                 AnStock.ProductId = Convert.ToInt32(DB.DataTable.Rows[Index]["ProductId"]);
@@ -69,9 +70,10 @@ namespace ClassLibrary
         }
 
 
-        public int Add()//If data type changes this needs to change
+        public int Add()
         {
             clsDataConnection DB = new clsDataConnection();
+            //DB.AddParameter("@IdentityID", mThisStock.IdentityId);
             DB.AddParameter("@StockID", mThisStock.StockId);
             DB.AddParameter("@SupplierId", mThisStock.SupplierId);
             DB.AddParameter("@ProductId", mThisStock.ProductId);
@@ -87,6 +89,7 @@ namespace ClassLibrary
         public void Update()
         {
             clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@IdentityID", mThisStock.IdentityId);
             DB.AddParameter("@StockId", mThisStock.StockId);
             DB.AddParameter("@SupplierId", mThisStock.SupplierId);
             DB.AddParameter("@ProductId", mThisStock.ProductId);

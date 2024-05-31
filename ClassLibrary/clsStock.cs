@@ -5,13 +5,14 @@ namespace ClassLibrary
 {
     public class clsStock
     {
-        private string mStockId;//If data type changes this needs to change
+        private string mStockId;
         private Boolean mInStock;
         private DateTime mLastOrder;
         private int mSupplierId;
         private int mProductId;
         private int mOrderId;
-        private int mStaffId;//If data type changes this needs to change
+        private int mStaffId;
+        private int mIdentityID;
 
         public bool InStock
         {
@@ -53,6 +54,18 @@ namespace ClassLibrary
             }
         }
 
+
+        public int IdentityId//If data type changes this needs to change
+        {
+            get
+            {
+                return mIdentityID;
+            }
+            set
+            {
+                mIdentityID = value;
+            }
+        }
 
 
 
@@ -109,13 +122,14 @@ namespace ClassLibrary
             }
         }
 
-        public bool Find(string StockID)
+        public bool Find(int IdentityID)
         {
             clsDataConnection DB = new clsDataConnection();
-            DB.AddParameter("@StockID", StockID); 
+            DB.AddParameter("@IdentityID", IdentityID); 
             DB.Execute("dbo.sproc_tblStock_FilteringByStockID");
             if (DB.Count == 1)
             {
+                mIdentityID = Convert.ToInt32(DB.DataTable.Rows[0]["IdentityID"]);
                 mStockId = Convert.ToString(DB.DataTable.Rows[0]["StockID"]);//If data type changes this needs to change
                 mInStock = Convert.ToBoolean(DB.DataTable.Rows[0]["InStock"]);
                 mLastOrder = Convert.ToDateTime(DB.DataTable.Rows[0]["LastOrder"]);
@@ -132,7 +146,7 @@ namespace ClassLibrary
 
         }
 
-        public string Valid(string SupplierId, string ProductId, string OrderId, string StaffId, string LastOrder)
+        public string Valid(string SupplierId, string ProductId, string OrderId, string StaffId, string LastOrder, string StockId)
         {
             DateTime DateTemp;
             string Error = "";
@@ -143,9 +157,10 @@ namespace ClassLibrary
             try
             {
                 Int64 Order = Convert.ToInt64(OrderId);
-                Int64 Staff = Convert.ToInt64(StaffId);//If data type changes this needs to change
+                Int64 Staff = Convert.ToInt64(StaffId);//Need to add a stockId one but will come back to this.
                 Int64 Product = Convert.ToInt64(ProductId);
                 Int64 Supplier = Convert.ToInt64(SupplierId);
+
                 DateTemp = Convert.ToDateTime(LastOrder);
 
                 if (Order <= min)
@@ -194,6 +209,15 @@ namespace ClassLibrary
                 if (DateTemp > DateTime.Now.Date)
                 {
                     Error = Error + "The date cannot be in the future";
+                }
+
+                if (StockId.Length == 0)
+                {
+                    Error = Error + "The Stock ID must not be blank";
+                }
+                if (StockId.Length > 8)
+                {
+                    Error = Error + "Must be less than 8";
                 }
 
                 return Error;

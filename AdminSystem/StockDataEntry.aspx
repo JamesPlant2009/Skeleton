@@ -43,9 +43,11 @@
             <asp:CheckBox ID="chkInStock" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" style="z-index: 1; left: 167px; top: 282px; position: absolute" Text="Yes" />
         </p>
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 24px; top: 329px; position: absolute; height: 26px"></asp:Label>
-        <asp:Button ID="btnOK" runat="server" OnClick="Button1_Click" style="z-index: 1; left: 132px; top: 374px; position: absolute" Text="OK" />
+        <asp:Button ID="btnOK" runat="server" OnClick="Button1_Click" style="z-index: 1; left: 132px; top: 374px; position: absolute; height: 26px;" Text="OK" />
         <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 199px; top: 374px; position: absolute" Text="Cancel" />
         <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 322px; top: 58px; position: absolute" Text="Find" />
+        <asp:Label ID="lblIdentityID" runat="server" style="z-index: 1; left: 26px; top: 25px; position: absolute" Text="Identity ID"></asp:Label>
+        <asp:TextBox ID="txtIdentityID" runat="server" style="z-index: 1; left: 133px; top: 26px; position: absolute"></asp:TextBox>
     </form>
 </body>
 </html>
