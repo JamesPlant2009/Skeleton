@@ -143,7 +143,39 @@ namespace Testing1
         }
 
 
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsStockCollection AllStocks = new clsStockCollection();
+            clsStock TestItem = new clsStock();
+            int PrimaryKey = 0;
+            
+            TestItem.IdentityId = 1;
+            TestItem.StockId = "AP10";
+            TestItem.SupplierId = 2;
+            TestItem.ProductId = 3;
+            TestItem.OrderId = 4;
+            TestItem.StaffId = 5;
+            TestItem.LastOrder = DateTime.Now;
+            TestItem.InStock = true;
 
+            AllStocks.ThisStock = TestItem;
+
+
+            PrimaryKey = AllStocks.Add();
+
+            TestItem.IdentityId = PrimaryKey;
+
+            AllStocks.ThisStock.Find(PrimaryKey);
+
+            AllStocks.Delete();
+
+            Boolean Found = AllStocks.ThisStock.Find(PrimaryKey);
+
+            Assert.IsFalse( Found );
+
+
+        }
 
 
 
