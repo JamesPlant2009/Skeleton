@@ -10,26 +10,9 @@ namespace ClassLibrary
         clsStock mThisStock = new clsStock();
         public clsStockCollection()//If data type changes this needs to change
         {
-            Int32 Index = 0;
-            Int32 RecordCount = 0;
             clsDataConnection DB = new clsDataConnection();
             DB.Execute("dbo.sproc_tblStock_SelectAll");
-            RecordCount = DB.Count;
-            while (Index < RecordCount)
-            {
-                clsStock AnStock = new clsStock();
-
-                AnStock.IdentityId = Convert.ToInt32(DB.DataTable.Rows[Index]["IdentityId"]);
-                AnStock.StockId = Convert.ToString(DB.DataTable.Rows[Index]["StockId"]);
-                AnStock.SupplierId = Convert.ToInt32(DB.DataTable.Rows[Index]["SupplierId"]);
-                AnStock.ProductId = Convert.ToInt32(DB.DataTable.Rows[Index]["ProductId"]);
-                AnStock.OrderId = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderId"]);
-                AnStock.StaffId = Convert.ToInt32(DB.DataTable.Rows[Index]["StaffId"]);
-                AnStock.InStock = Convert.ToBoolean(DB.DataTable.Rows[Index]["InStock"]);
-                AnStock.LastOrder = Convert.ToDateTime(DB.DataTable.Rows[Index]["LastOrder"]);
-                mStockList.Add( AnStock );
-                Index++;
-            }
+            PopulateArray(DB);
         }   
         
 
@@ -93,6 +76,16 @@ namespace ClassLibrary
             DB.Execute("dbo.sproc_tblStock_Delete");
         }
 
+        public void ReportByStockId(string StockId)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@StockId", StockId);
+            DB.Execute("dbo.sproc_tblStock_FilterByStockId");
+            PopulateArray(DB);
+        }
+
+
+
         public void Update()
         {
             clsDataConnection DB = new clsDataConnection();
@@ -108,6 +101,28 @@ namespace ClassLibrary
             DB.Execute("dbo.sproc_tblStock_Update");
         }
 
+        public void PopulateArray(clsDataConnection DB)
+        {
+            Int32 Index = 0;
+            Int32 RecordCount;
+            RecordCount = DB.Count;
+            mStockList = new List<clsStock>();
+            while (Index < RecordCount)
+            {
+                clsStock AnStock = new clsStock();
+
+                AnStock.IdentityId = Convert.ToInt32(DB.DataTable.Rows[Index]["IdentityId"]);
+                AnStock.StockId = Convert.ToString(DB.DataTable.Rows[Index]["StockId"]);
+                AnStock.SupplierId = Convert.ToInt32(DB.DataTable.Rows[Index]["SupplierId"]);
+                AnStock.ProductId = Convert.ToInt32(DB.DataTable.Rows[Index]["ProductId"]);
+                AnStock.OrderId = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderId"]);
+                AnStock.StaffId = Convert.ToInt32(DB.DataTable.Rows[Index]["StaffId"]);
+                AnStock.InStock = Convert.ToBoolean(DB.DataTable.Rows[Index]["InStock"]);
+                AnStock.LastOrder = Convert.ToDateTime(DB.DataTable.Rows[Index]["LastOrder"]);
+                mStockList.Add(AnStock);
+                Index++;
+            }
+        }
         
     }
 }

@@ -90,7 +90,7 @@ namespace Testing1
 
             AllStocks.ThisStock = TestItem;
 
-            
+
             PrimaryKey = AllStocks.Add();
 
             TestItem.IdentityId = PrimaryKey;
@@ -109,7 +109,7 @@ namespace Testing1
             clsStockCollection AllStock = new clsStockCollection();
             clsStock TestItem = new clsStock();
             int PrimaryKey = 0;
-            
+
             TestItem.StockId = "AP10";
             TestItem.SupplierId = 1;
             TestItem.ProductId = 2;
@@ -120,7 +120,7 @@ namespace Testing1
 
             AllStock.ThisStock = TestItem;
 
-            
+
             PrimaryKey = AllStock.Add();
 
             TestItem.IdentityId = PrimaryKey;
@@ -149,7 +149,7 @@ namespace Testing1
             clsStockCollection AllStocks = new clsStockCollection();
             clsStock TestItem = new clsStock();
             int PrimaryKey = 0;
-            
+
             TestItem.IdentityId = 1;
             TestItem.StockId = "AP10";
             TestItem.SupplierId = 2;
@@ -172,12 +172,55 @@ namespace Testing1
 
             Boolean Found = AllStocks.ThisStock.Find(PrimaryKey);
 
-            Assert.IsFalse( Found );
+            Assert.IsFalse(Found);
 
 
         }
 
+        [TestMethod]
+        public void ReportByStockIdOK()
+        {
+            clsStockCollection AllStocks = new clsStockCollection();
+            clsStockCollection FilteredStocks = new clsStockCollection();
+            FilteredStocks.ReportByStockId("");
+            Assert.AreEqual(AllStocks.Count, FilteredStocks.Count);
+        }
 
+
+        [TestMethod]
+        public void ReportByStockIdNoneFoundOK()
+        {
+            //clsStockCollection AllStocks = new clsStockCollection();
+            clsStockCollection FilteredStocks = new clsStockCollection();
+            FilteredStocks.ReportByStockId("xxx xxx");
+            Assert.AreEqual(0, FilteredStocks.Count);
+        }
+
+        [TestMethod]
+        public void ReportByStockIdTestDataFoundOK()
+        {
+            clsStockCollection FilteredStocks = new clsStockCollection();
+            Boolean OK = true;
+            FilteredStocks.ReportByStockId("GH76");
+            if (FilteredStocks.Count == 2)
+            {
+                if (FilteredStocks.StockList[0].IdentityId != 3)
+                {
+                    OK = false;
+                }
+                if (FilteredStocks.StockList[1].IdentityId != 21)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+
+
+            Assert.IsTrue(OK);
+        }
 
     }
 }
