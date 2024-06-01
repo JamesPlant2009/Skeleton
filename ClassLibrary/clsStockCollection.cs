@@ -86,6 +86,13 @@ namespace ClassLibrary
 
         }
 
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@IdentityId", mThisStock.IdentityId);
+            DB.Execute("dbo.sproc_tblStock_Delete");
+        }
+
         public void Update()
         {
             clsDataConnection DB = new clsDataConnection();
@@ -100,5 +107,7 @@ namespace ClassLibrary
 
             DB.Execute("dbo.sproc_tblStock_Update");
         }
+
+        
     }
 }
