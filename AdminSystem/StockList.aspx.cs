@@ -15,6 +15,9 @@ public partial class _1_List : System.Web.UI.Page
         {
             DisplayStocks();
         }
+        clsStockUser AnUser = new clsStockUser();
+        AnUser = (clsStockUser)Session["AnUser"];
+        Response.Write("Logged in as: " + AnUser.UserName);
 
     }
 
