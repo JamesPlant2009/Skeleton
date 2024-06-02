@@ -23,6 +23,7 @@ public partial class StockLogin : System.Web.UI.Page
         UserName = Convert.ToString(txtBoxUserName.Text);
         Password = Convert.ToString(txtBoxPassword.Text);
         Found = AnUser.FindUser(UserName, Password);
+        Session["AnUser"] = AnUser;
 
         if (txtBoxUserName.Text == "")
         {
@@ -45,6 +46,6 @@ public partial class StockLogin : System.Web.UI.Page
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
