@@ -107,7 +107,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
             clsStockCollection StockBook = new clsStockCollection();
             StockBook.ThisStock.Find(IdentityID);
-        txtStockID.Text = StockBook.ThisStock.StockId;
+            txtStockID.Text = StockBook.ThisStock.StockId;
             txtLastOrder.Text = StockBook.ThisStock.LastOrder.ToString();
             txtOrderID.Text =   StockBook.ThisStock.OrderId.ToString();
             txtProductID.Text = StockBook.ThisStock.ProductId.ToString();
