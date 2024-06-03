@@ -201,14 +201,14 @@ namespace Testing1
         {
             clsStockCollection FilteredStocks = new clsStockCollection();
             Boolean OK = true;
-            FilteredStocks.ReportByStockId("GH76");
+            FilteredStocks.ReportByStockId("QW56");
             if (FilteredStocks.Count == 2)
             {
-                if (FilteredStocks.StockList[0].IdentityId != 3)
+                if (FilteredStocks.StockList[0].IdentityId != 6)
                 {
                     OK = false;
                 }
-                if (FilteredStocks.StockList[1].IdentityId != 21)
+                if (FilteredStocks.StockList[1].IdentityId != 57)
                 {
                     OK = false;
                 }
