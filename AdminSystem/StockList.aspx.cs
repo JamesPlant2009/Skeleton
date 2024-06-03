@@ -8,12 +8,17 @@ using ClassLibrary;
 
 public partial class _1_List : System.Web.UI.Page
 {
-    
+    Int32 IdentityId;
     protected void Page_Load(object sender, EventArgs e)
     {
+        IdentityId = Convert.ToInt32(Session["IdenitityId"]);
         if (IsPostBack == false)
         {
-            DisplayStocks();
+            if(IdentityId != -1)
+            {
+                DisplayStocks();
+            }
+            
         }
         clsStockUser AnUser = new clsStockUser();
         AnUser = (clsStockUser)Session["AnUser"];
@@ -25,8 +30,8 @@ public partial class _1_List : System.Web.UI.Page
     {
         clsStockCollection AnStock = new clsStockCollection();
         lstStockList.DataSource = AnStock.StockList;
-        lstStockList.DataValueField = "StockId";
         lstStockList.DataValueField = "ProductId";
+        lstStockList.DataValueField = "StockId";
         lstStockList.DataBind();
     }
 
@@ -86,5 +91,10 @@ public partial class _1_List : System.Web.UI.Page
         lstStockList.DataValueField = "IdentityId";
         lstStockList.DataValueField = "StockId";
         lstStockList.DataBind();
+    }
+
+    protected void lstStockList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
     }
 }
