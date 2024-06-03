@@ -30,8 +30,8 @@ public partial class _1_List : System.Web.UI.Page
     {
         clsStockCollection AnStock = new clsStockCollection();
         lstStockList.DataSource = AnStock.StockList;
-        lstStockList.DataValueField = "ProductId";
-        lstStockList.DataValueField = "StockId";
+        lstStockList.DataValueField = "IdentityId";
+        lstStockList.DataTextField = "StockId";
         lstStockList.DataBind();
     }
 
