@@ -17,14 +17,29 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOK_Click(object sender, EventArgs e)
     {
         clsOrder AnOrder = new clsOrder();
-        AnOrder.StockId = txtStockId.Text;
-        AnOrder.CustomerId = Convert.ToInt32(txtCustomerId.Text);
-        AnOrder.OrderId = Convert.ToInt32(txtOrderId.Text);
-        AnOrder.OrderShipped =chkShipped.Checked;
-        AnOrder.DateOrdered = Convert.ToDateTime(DateTime.Now);
-        AnOrder.Price = Convert.ToInt32(txtPrice.Text);
-        Session["AnOrder"] = AnOrder;
-        Response.Redirect("OrderViewer.aspx");
+        string OrderId = txtOrderId.Text;
+        string StockId = txtStockId.Text;
+        string CustomerId = txtCustomerId.Text;
+        string Price = txtPrice.Text;
+        string OrderShipped = chkShipped.Text;
+        string DateOrdered = txtOderDate.Text;
+        string Error = "";
+        Error = AnOrder.Valid(StockId, CustomerId, Price, DateOrdered);
+        if (Error == "")
+        {
+            AnOrder.StockId = txtStockId.Text;
+            AnOrder.CustomerId = Convert.ToInt32(txtCustomerId.Text);
+            AnOrder.OrderId = Convert.ToInt32(txtOrderId.Text);
+            AnOrder.OrderShipped = chkShipped.Checked;
+            AnOrder.DateOrdered = Convert.ToDateTime(DateTime.Now);
+            AnOrder.Price = Convert.ToInt32(txtPrice.Text);
+            Session["AnOrder"] = AnOrder;
+            Response.Redirect("OrderViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
     }
 
     protected void btnfind_Click(object sender, EventArgs e)
