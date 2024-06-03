@@ -102,7 +102,7 @@ namespace ClassLibrary
         {
             string error = "";
             DateTime tempDate;
-            Int32 tempInt;
+            Int32 tempInt2, tempInt1;
             if (StockId.Length == 0)
             {
                 error = error + " The Stock Id must not be left blank";
@@ -114,8 +114,8 @@ namespace ClassLibrary
             try
             {
                 tempDate = Convert.ToDateTime(OrderDate);
-                tempInt = Convert.ToInt32(price);
-                tempInt = Convert.ToInt32(CustomerId);
+                tempInt1 = Convert.ToInt32(price);
+                tempInt2 = Convert.ToInt32(CustomerId);
 
                 if (tempDate < DateTime.Now.Date)
                 {
@@ -125,11 +125,19 @@ namespace ClassLibrary
                 {
                     error = error + " The date cannot be in the future";
                 }
-                if (tempInt <= 0)
+                if (tempInt1 < 0)
                 {
                     error = error + " The price cannot be below 0";
                 }
-                if (tempInt >= 10000)
+                if (tempInt1 > 10000)
+                {
+                    error = error + " The price cannot be over 10000";
+                }
+                if (tempInt2 < 0)
+                {
+                    error = error + " The price cannot be below 0";
+                }
+                if (tempInt2 > 10000)
                 {
                     error = error + " The price cannot be over 10000";
                 }
