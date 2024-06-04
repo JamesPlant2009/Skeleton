@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace ClassLibrary
 {
@@ -25,7 +26,8 @@ namespace ClassLibrary
                 Index++;
             }
         }
-        List<clsOrder> mOrderList = new List<clsOrder>();     
+        List<clsOrder> mOrderList = new List<clsOrder>(); 
+        clsOrder mThisOrder = new clsOrder();
 
         public List<clsOrder> OrderList 
         {
@@ -48,6 +50,27 @@ namespace ClassLibrary
             {
             }
         }
-        public clsOrder ThisOrder { get; set; }
+        public clsOrder ThisOrder 
+        {
+            get
+            {
+                return mThisOrder;
+            }
+            set
+            {
+                mThisOrder = value;
+            }
+        }
+
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@StockId", mThisOrder.StockId);
+            DB.AddParameter("@CustomerId", mThisOrder.CustomerId);
+            DB.AddParameter("@Price", mThisOrder.Price);
+            DB.AddParameter("@OrderDate", mThisOrder.DateOrdered);
+            DB.AddParameter("@OrderShipped", mThisOrder.OrderShipped);
+            return mThisOrder.OrderId;
+        }
     }
 }

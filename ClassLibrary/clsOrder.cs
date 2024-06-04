@@ -107,7 +107,7 @@ namespace ClassLibrary
             {
                 error = error + " The Stock Id must not be left blank";
             }
-            if (StockId.Length > 8) 
+            if (StockId.Length > 8)
             {
                 error = error + " The lenght of Stock Id must not be more than 8 chars";
             }

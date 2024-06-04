@@ -27,14 +27,15 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = AnOrder.Valid(StockId, CustomerId, Price, DateOrdered);
         if (Error == "")
         {
-            AnOrder.StockId = txtStockId.Text;
-            AnOrder.CustomerId = Convert.ToInt32(txtCustomerId.Text);
-            AnOrder.OrderId = Convert.ToInt32(txtOrderId.Text);
+            AnOrder.StockId = StockId;
+            AnOrder.CustomerId = Convert.ToInt32(CustomerId);
             AnOrder.OrderShipped = chkShipped.Checked;
-            AnOrder.DateOrdered = Convert.ToDateTime(DateTime.Now);
-            AnOrder.Price = Convert.ToInt32(txtPrice.Text);
-            Session["AnOrder"] = AnOrder;
-            Response.Redirect("OrderViewer.aspx");
+            AnOrder.DateOrdered = Convert.ToDateTime(DateOrdered);
+            AnOrder.Price = Convert.ToInt32(Price);
+            clsOrderCollection OrderList = new clsOrderCollection();
+            OrderList.ThisOrder = AnOrder;
+            OrderList.Add();
+            Response.Redirect("OrderList.aspx");
         }
         else
         {
