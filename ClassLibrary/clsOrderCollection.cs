@@ -13,7 +13,7 @@ namespace ClassLibrary
         public clsOrderCollection()
         {
             clsDataConnection DB = new clsDataConnection();
-            DB.Execute("sproc_tblOrder_SelectAll");
+            DB.Execute("dbo.sproc_tblOrder_SelectAll");
             populateArray(DB);
         }
 
@@ -59,7 +59,8 @@ namespace ClassLibrary
             DB.AddParameter("@Price", mThisOrder.Price);
             DB.AddParameter("@OrderDate", mThisOrder.DateOrdered);
             DB.AddParameter("@OrderShipped", mThisOrder.OrderShipped);
-            return DB.Execute("sproc_tblOrder_Insert");
+
+            return DB.Execute("dbo.sproc_tblOrder_Insert");
         }
         public void Update()
         {
@@ -68,7 +69,7 @@ namespace ClassLibrary
             DB.AddParameter("@StockId", mThisOrder.StockId);
             DB.AddParameter("@CustomerId", mThisOrder.CustomerId);
             DB.AddParameter("@Price", mThisOrder.Price);
-            DB.AddParameter("@OrderDate", mThisOrder.DateOrdered);
+            DB.AddParameter("@DateOrdered", mThisOrder.DateOrdered);
             DB.AddParameter("@OrderShipped", mThisOrder.OrderShipped);
 
             DB.Execute("dbo.sproc_tblOrder_Update");
@@ -76,7 +77,7 @@ namespace ClassLibrary
         public void populateArray(clsDataConnection DB)
         {
             Int32 Index = 0;
-            Int32 recordCount = 0;
+            Int32 recordCount;
             recordCount = DB.Count;
             mOrderList = new List<clsOrder>();
             while (Index < recordCount)

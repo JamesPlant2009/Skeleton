@@ -28,7 +28,7 @@ public partial class _1_List : System.Web.UI.Page
 
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        Session["OrderId"] = -1;
+        Session["order_Id"] = -1;
         Response.Redirect("OrderDataEntry.aspx");
     }
 
@@ -38,7 +38,7 @@ public partial class _1_List : System.Web.UI.Page
         if(lstOrderList.SelectedIndex !=-1)
         {
             OrderId = Convert.ToInt32(lstOrderList.SelectedValue);
-            Session["order_id"] = OrderId;
+            Session["order_Id"] = OrderId;
             Response.Redirect("OrderDataEntry.aspx");
         }
         else
