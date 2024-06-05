@@ -8,11 +8,78 @@ namespace ClassLibrary
         {
 
         }
-        public string productName { get; set; }
-        public Int32 price {  get; set; }
-        public DateTime lastOrder { get; set; }
-        public DateTime dateAdded { get; set; }
-        public bool inStock { get; set; }
-        public Int32 productId { get; set; }
+        private string mproductname;
+        private Int32 mprice;
+        private DateTime mLastOrder;
+        private DateTime mdateAdded;
+        private bool minStock;
+        private Int32 mproductId;
+
+        public string productName 
+        {
+            get
+            {
+                return mproductname;
+            }
+            set
+            {
+                mproductname = value;
+            }
+        }
+        public Int32 price 
+        {
+            get
+            {
+                return mprice;
+            }
+            set
+            {
+                mprice = value;
+            }
+        }
+        public DateTime lastOrder 
+        {
+            get
+            {
+                return mLastOrder;
+            }
+            set
+            {
+                mLastOrder = value;
+            }
+        }
+        public DateTime dateAdded 
+        {
+            get
+            {
+                return mdateAdded;  
+
+            }
+            set
+            {
+                mdateAdded = value;
+            }
+        }
+        public bool inStock 
+        {
+            get
+            {
+                return minStock;
+            }
+            set
+            {
+                minStock = value;
+            }
+        }
+        public Int32 productId 
+        { get
+            {
+                return mproductId;
+            }
+            set
+            {
+                mproductId = value;
+            }
+        }
     }
 }
