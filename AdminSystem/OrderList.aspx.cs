@@ -31,4 +31,19 @@ public partial class _1_List : System.Web.UI.Page
         Session["OrderId"] = -1;
         Response.Redirect("OrderDataEntry.aspx");
     }
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        Int32 OrderId;
+        if(lstOrderList.SelectedIndex !=-1)
+        {
+            OrderId = Convert.ToInt32(lstOrderList.SelectedValue);
+            Session["order_id"] = OrderId;
+            Response.Redirect("OrderDataEntry.aspx");
+        }
+        else
+        {
+            lblError.Text = "Please select an entry to edit";
+        }
+    }
 }
