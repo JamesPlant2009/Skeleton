@@ -46,4 +46,15 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select an entry to edit";
         }
     }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        Int32 OrderId;
+        if(lstOrderList.SelectedIndex != -1)
+        {
+            OrderId = Convert.ToInt32(lstOrderList.SelectedValue);
+            Session["order_Id"] = OrderId;
+            Response.Redirect("OrderConfirmDelete.aspx");
+        }
+    }
 }

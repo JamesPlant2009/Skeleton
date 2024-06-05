@@ -113,5 +113,24 @@ namespace Testing2
             Assert.AreEqual (allOrder.ThisOrder, testItem);
 
         }
+        [TestMethod]
+        public void DeleteMethodOK() 
+        {
+            clsOrderCollection AllOrder = new clsOrderCollection();
+            clsOrder testItem = new clsOrder();
+            Int32 primaryKey = 0;
+            testItem.StockId = "10A";
+            testItem.CustomerId = 8;
+            testItem.Price = 5000;
+            testItem.DateOrdered = DateTime.Now;
+            testItem.OrderShipped = true;
+            AllOrder.ThisOrder = testItem;
+            primaryKey = AllOrder.Add();
+            testItem.OrderId = primaryKey;
+            AllOrder.ThisOrder.Find(primaryKey);
+            AllOrder.Delete();
+            Boolean Found = AllOrder.ThisOrder.Find(primaryKey);
+            Assert.IsFalse (Found);
+        }
     }
 }

@@ -62,6 +62,13 @@ namespace ClassLibrary
 
             return DB.Execute("dbo.sproc_tblOrder_Insert");
         }
+        public void Delete() 
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@OrderId", mThisOrder.OrderId);
+
+            DB.Execute("sproc_tblOrder_Delete");
+        }
         public void Update()
         {
             clsDataConnection DB = new clsDataConnection();
