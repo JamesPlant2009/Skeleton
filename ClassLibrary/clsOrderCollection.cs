@@ -100,5 +100,13 @@ namespace ClassLibrary
                 Index++;
             }
         }
+
+        public void ReportByStockId(string stockId)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@StockId", stockId);
+            DB.Execute("sproc_tblOrder_FilteringByStockId");
+            populateArray(DB);
+        }
     }
 }

@@ -132,5 +132,21 @@ namespace Testing2
             Boolean Found = AllOrder.ThisOrder.Find(primaryKey);
             Assert.IsFalse (Found);
         }
+        [TestMethod]
+        public void ReportByStockIdMethodOK() 
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrderCollection FilteredStockId = new clsOrderCollection();
+            FilteredStockId.ReportByStockId("");
+            Assert.AreEqual(AllOrders.Count, FilteredStockId.Count);
+        }
+        [TestMethod]
+        public void ReportByStockIdNoneFound() 
+        {
+            clsOrderCollection FilteredStockId = new clsOrderCollection();
+            FilteredStockId.ReportByStockId("xxxx");
+            Assert.AreEqual(0, FilteredStockId.Count);
+            
+        }
     }
 }
