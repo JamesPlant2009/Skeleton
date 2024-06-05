@@ -61,6 +61,57 @@ namespace Testing2
             AllOrder.OrderList = testList;
             Assert.AreEqual(AllOrder.Count, testList.Count);
         }
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsOrderCollection AllOrder = new clsOrderCollection();
+            clsOrder testItem = new clsOrder();
+            int primaryKey = 0;
+            testItem.OrderId = 30;
+            testItem.StockId = "7A";
+            testItem.CustomerId = 8;
+            testItem.Price = 5000;
+            testItem.DateOrdered = DateTime.Now;
+            testItem.OrderShipped = true;
 
+            AllOrder.ThisOrder = testItem;
+
+            primaryKey = AllOrder.Add();
+
+            testItem.OrderId = primaryKey;
+
+            AllOrder.ThisOrder.Find(primaryKey);
+
+            Assert.AreEqual(AllOrder.ThisOrder, testItem);
+        }
+        [TestMethod]
+        public void UpdateMethodOK() 
+        {
+            clsOrderCollection allOrder = new clsOrderCollection();
+            clsOrder testItem = new clsOrder();
+            Int32 primaryKey = 0;
+            testItem.StockId = "7A";
+            testItem.CustomerId = 8;
+            testItem.Price = 5000;
+            testItem.DateOrdered = DateTime.Now;
+            testItem.OrderShipped = true;
+
+            allOrder.ThisOrder = testItem;
+            primaryKey = allOrder.Add();
+
+            testItem.OrderId = primaryKey;
+
+            testItem.StockId = "7B";
+            testItem.CustomerId = 9;
+            testItem.Price = 4000;
+            testItem.DateOrdered = DateTime.Now;
+            testItem.OrderShipped = false;
+
+            allOrder.ThisOrder = testItem;
+            allOrder.Update();
+            allOrder.ThisOrder.Find(primaryKey);
+            Assert.AreEqual (allOrder.ThisOrder, testItem);
+
+        }
     }
 }
