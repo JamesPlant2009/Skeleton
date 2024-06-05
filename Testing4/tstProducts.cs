@@ -7,6 +7,11 @@ namespace Testing4
     [TestClass]
     public class tstProducts
     {
+        string ProductName = "Phone1";
+        string Price = "1000";
+        string LastOrder = DateTime.Now.ToShortDateString();
+        string DateAdded = DateTime.Now.ToShortDateString();
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -53,6 +58,15 @@ namespace Testing4
             string testData = "123a";
             Anproduct.ProductName = testData; 
             Assert.AreEqual(Anproduct.ProductName, testData);
+        }
+        [TestMethod]
+        public void ValideMethodOk()
+        {
+            clsProduct AnProduct = new clsProduct();
+            string Error = "";
+            Error = AnProduct.Valid(productName, price, LastOrder, DateAdded);
+            Assert.AreEqual(Error,"");  
+
         }
 }
     }

@@ -81,5 +81,9 @@ namespace ClassLibrary
                 mproductId = value;
             }
         }
+        public string Valid(string productName, string price, string LastOrder, string DateAdded )
+        {
+
+        }
     }
 }
