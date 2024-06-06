@@ -14,7 +14,9 @@ public partial class _1_List : System.Web.UI.Page
         {
             DisplayOrders();
         }
-
+        clsOrderUser AnUser = new clsOrderUser();
+        AnUser = (clsOrderUser)Session["AnUser"];
+        Response.Write("Logged in as: " + AnUser.UserName);
 
     }
     void DisplayOrders()
@@ -77,5 +79,10 @@ public partial class _1_List : System.Web.UI.Page
         lstOrderList.DataValueField = "OrderId";
         lstOrderList.DataTextField = "StockId";
         lstOrderList.DataBind();
+    }
+
+    protected void btnMainMenu_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }

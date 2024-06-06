@@ -91,4 +91,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtOderDate.Text = OrderBook.ThisOrder.DateOrdered.ToString();
         chkShipped.Checked = OrderBook.ThisOrder.OrderShipped;
     }
+
+    protected void btnMainMenu_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
+    }
 }
