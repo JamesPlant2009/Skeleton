@@ -57,4 +57,25 @@ public partial class _1_List : System.Web.UI.Page
             Response.Redirect("OrderConfirmDelete.aspx");
         }
     }
+
+    protected void btnFilter_Click(object sender, EventArgs e)
+    {
+        clsOrderCollection AnOrder = new clsOrderCollection();
+        AnOrder.ReportByStockId(txtStockIdSearch.Text);
+        lstOrderList.DataSource = AnOrder.OrderList;
+        lstOrderList.DataValueField = "OrderId";
+        lstOrderList.DataTextField = "StockId";
+        lstOrderList.DataBind();
+    }
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        clsOrderCollection AnOrder = new clsOrderCollection();
+        AnOrder.ReportByStockId("");
+        txtStockIdSearch.Text = "";
+        lstOrderList.DataSource= AnOrder.OrderList;
+        lstOrderList.DataValueField = "OrderId";
+        lstOrderList.DataTextField = "StockId";
+        lstOrderList.DataBind();
+    }
 }
