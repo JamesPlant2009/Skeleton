@@ -113,5 +113,40 @@ namespace Testing2
             Assert.AreEqual (allOrder.ThisOrder, testItem);
 
         }
+        [TestMethod]
+        public void DeleteMethodOK() 
+        {
+            clsOrderCollection AllOrder = new clsOrderCollection();
+            clsOrder testItem = new clsOrder();
+            Int32 primaryKey = 0;
+            testItem.StockId = "10A";
+            testItem.CustomerId = 8;
+            testItem.Price = 5000;
+            testItem.DateOrdered = DateTime.Now;
+            testItem.OrderShipped = true;
+            AllOrder.ThisOrder = testItem;
+            primaryKey = AllOrder.Add();
+            testItem.OrderId = primaryKey;
+            AllOrder.ThisOrder.Find(primaryKey);
+            AllOrder.Delete();
+            Boolean Found = AllOrder.ThisOrder.Find(primaryKey);
+            Assert.IsFalse (Found);
+        }
+        [TestMethod]
+        public void ReportByStockIdMethodOK() 
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrderCollection FilteredStockId = new clsOrderCollection();
+            FilteredStockId.ReportByStockId("");
+            Assert.AreEqual(AllOrders.Count, FilteredStockId.Count);
+        }
+        [TestMethod]
+        public void ReportByStockIdNoneFound() 
+        {
+            clsOrderCollection FilteredStockId = new clsOrderCollection();
+            FilteredStockId.ReportByStockId("xxxx");
+            Assert.AreEqual(0, FilteredStockId.Count);
+            
+        }
     }
 }

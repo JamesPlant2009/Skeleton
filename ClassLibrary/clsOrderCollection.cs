@@ -62,6 +62,13 @@ namespace ClassLibrary
 
             return DB.Execute("dbo.sproc_tblOrder_Insert");
         }
+        public void Delete() 
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@OrderId", mThisOrder.OrderId);
+
+            DB.Execute("sproc_tblOrder_Delete");
+        }
         public void Update()
         {
             clsDataConnection DB = new clsDataConnection();
@@ -92,6 +99,14 @@ namespace ClassLibrary
                 mOrderList.Add(AnOrder);
                 Index++;
             }
+        }
+
+        public void ReportByStockId(string stockId)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@StockId", stockId);
+            DB.Execute("sproc_tblOrder_FilteringByStockId");
+            populateArray(DB);
         }
     }
 }

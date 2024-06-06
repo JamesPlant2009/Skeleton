@@ -163,7 +163,7 @@ namespace Testing2
         public void ValidMethodOK()
         {
             clsOrder AnOrder = new clsOrder();
-            string error = " ";
+            string error = "";
             error = AnOrder.Valid(stockId, customerId, price, orderDate);
             Assert.AreEqual(error, "");
 
