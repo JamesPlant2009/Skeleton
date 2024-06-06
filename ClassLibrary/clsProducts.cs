@@ -83,7 +83,52 @@ namespace ClassLibrary
         }
         public string Valid(string productName, string price, string LastOrder, string DateAdded )
         {
-            return null; 
+            string error = "";
+            Int32 TempInt;
+            DateTime tempDate1, tempDate2;
+            if ( productName.Length == 0 )
+            {
+                error = error + "do not leave it empty";
+            }
+            if (productName.Length >=10 )
+            {
+                error = error + "not more than 10 character";
+            }
+            try
+            {
+                TempInt = Convert.ToInt32(price);
+                tempDate1 = Convert.ToDateTime(LastOrder);
+                tempDate2 = Convert.ToDateTime(DateAdded);
+                if ( TempInt < 0 )
+                {
+                    error = error + "not accepting negative numbers";
+                }
+                if (TempInt > 10000)
+                {
+                    error = error + "not more than 10000";
+                }
+                if (tempDate1 < DateTime.Now.Date)
+                {
+                    error = error + " The date cannot be in the past";
+                }
+                if (tempDate1 > DateTime.Now.Date)
+                {
+                    error = error + " The date cannot be in the future";
+                }
+                if (tempDate2 < DateTime.Now.Date)
+                {
+                    error = error + " The date cannot be in the past";
+                }
+                if (tempDate2 > DateTime.Now.Date)
+                {
+                    error = error + " The date cannot be in the future";
+                }
+            }
+            catch
+            {
+                error = error + "must be a valid data type";
+            }
+            return error; 
         }
     }
 }
