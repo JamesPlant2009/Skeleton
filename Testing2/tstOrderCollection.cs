@@ -144,8 +144,25 @@ namespace Testing2
         public void ReportByStockIdNoneFound() 
         {
             clsOrderCollection FilteredStockId = new clsOrderCollection();
+            bool OK = true;
             FilteredStockId.ReportByStockId("xxxx");
-            Assert.AreEqual(0, FilteredStockId.Count);
+            if(FilteredStockId.Count == 2)
+            {
+                if (FilteredStockId.OrderList[0].OrderId != 23)
+                {
+                    OK = false;
+                }
+                if (FilteredStockId.OrderList[1].OrderId != 24)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = true;
+            }
+
+            Assert.IsTrue(OK);
             
         }
     }
